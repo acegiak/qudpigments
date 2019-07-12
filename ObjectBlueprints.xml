@@ -1,0 +1,14 @@
+<objects>
+  <object Name="DoNotUse_LiquidDyeObjectInitializer" Inherits="Item">
+    <part Name="Render" DisplayName="[Dummy item for Liquid Test]" />
+    <part Name="acegiak_PigmentLiquidInitializer" />
+    <tag Name="ExcludeFromDynamicEncounters" />
+</object>
+
+
+
+  <object Name="Dye Phial" Inherits="Phial">
+    <part Name="LiquidVolume" StartVolume="1" InitialLiquid="dye-1000" />
+      <part Name="TinkerItem" Bits="05" CanDisassemble="false" CanBuild="true" CanRepair="false"></part>
+  </object>
+</objects>
