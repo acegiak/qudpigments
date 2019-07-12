@@ -14,13 +14,13 @@ namespace XRL.Liquids
 	[Serializable]
 	internal class acegiak_LiquidDye : BaseLiquid
 	{
-		public new const int ID = 130;
+		public new const int ID = 140;
 
 		public new const string Name = "dye";
 
         public string Color;
 
-        public Dictionary<string,string> ColorNames = new Dictionary<string,string>()
+        public static Dictionary<string,string> ColorNames = new Dictionary<string,string>()
         {
             {"K","charcoal"},
             {"k","black"},
@@ -72,7 +72,7 @@ namespace XRL.Liquids
 
 		public override string GetName(LiquidVolume Liquid)
 		{
-			return "&"+Color+"dye";
+			return "&"+Color+""+ColorNames[Color]+" dye";
 		}
 
 		public override bool Drank(LiquidVolume Liquid, int Volume, GameObject Target, StringBuilder Message, ref bool ExitInterface)

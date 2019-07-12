@@ -10,6 +10,7 @@ using XRL.World.Parts.Effects;
 using UnityEngine;
 using XRL.Liquids;
 using XRL.World.Tinkering;
+using System.Linq;
 
 namespace XRL.World.Parts
 {
@@ -20,9 +21,10 @@ namespace XRL.World.Parts
         {
             Debug.Log("Initializing Pigment Liquids.");
             
-            LiquidVolume.ComponentLiquidTypes.Add(Convert.ToByte(acegiak_LiquidDye.ID), new acegiak_LiquidDye());
-			LiquidVolume.ComponentLiquidNameMap.Add("dye", LiquidVolume.ComponentLiquidTypes[Convert.ToByte(acegiak_LiquidDye.ID)]);
-            
+            for(int i=0;i < acegiak_LiquidDye.ColorNames.Keys.ToList().Count;i++){
+                LiquidVolume.ComponentLiquidTypes.Add(Convert.ToByte(acegiak_LiquidDye.ID+i), new acegiak_LiquidDye(acegiak_LiquidDye.ColorNames.Keys.ToList()[i]));
+			    LiquidVolume.ComponentLiquidNameMap.Add(acegiak_LiquidDye.ColorNames.Values.ToList()[i]+"dye", LiquidVolume.ComponentLiquidTypes[Convert.ToByte(acegiak_LiquidDye.ID+i)]);
+            }
 
 			// LiquidVolume.ComponentLiquidTypes.Add(Convert.ToByte(acegiak_LiquidFurlingAgent.ID), new acegiak_LiquidFurlingAgent());
 			// LiquidVolume.ComponentLiquidNameMap.Add("furlingagent", LiquidVolume.ComponentLiquidTypes[Convert.ToByte(acegiak_LiquidFurlingAgent.ID)]);
