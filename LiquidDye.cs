@@ -26,7 +26,7 @@ namespace XRL.Liquids
             {"k","black"},
             {"Y","white"},
             {"y","ash"},
-            {"r","sanguine"},
+            {"r","crimson"},
             {"R","scarlet"},
             {"O","gold"},
             {"o","orange"},
