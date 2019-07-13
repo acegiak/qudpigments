@@ -66,10 +66,6 @@ namespace XRL.World.Parts.Skill
 
                 }
 
-
-
-
-
                 ChoiceList = new List<string>();
                 HotkeyList = new List<char>();
                 ChoiceList.Add("Custom design.");
@@ -134,42 +130,38 @@ namespace XRL.World.Parts.Skill
                     DetailColour = Canvas.pRender.DetailColor;
                 }
 
-                string designText = "Mysterious shapes.";
+
+                if(detailColor < 0 && baseColor < 0){
+                    return;
+                }
+
+                string designText = "mysterious shapes";
                 if(designNumber ==0){
                     designText = Popup.AskString("What do you depict?", string.Empty, 999);
                 }
-                if(Canvas.GetPart<acegiak_ModHandPainted>() == null){
-                    Canvas.AddPart(new acegiak_ModHandPainted());
-                }
 
-                acegiak_ModHandPainted painting = Canvas.GetPart<acegiak_ModHandPainted>();
-                if(paintingpart == null){
+
+
+                acegiak_ModHandPainted painting = new acegiak_ModHandPainted();
                     painting.Engraving = designText;
                     painting.BaseColour = BaseColour;
                     painting.DetailColour = DetailColour;
-                    // Canvas.pRender.TileColor = "&"+BaseColour;
-                    // Canvas.pRender.DetailColor = DetailColour;
-                }else{
-                    IPart.AddPlayerMessage("You paint "+Canvas.its+" "+paintingpart.Name+" with &"+BaseColour+designText+paintingpart.ID.ToString());
-                    painting.PaintedParts.Add(new List<string>(new string[]{paintingpart.ID.ToString(), BaseColour,DetailColour,designText,String.Join(" and ",chosenStuffs.ToArray())}));
-                    // Canvas.pRender.TileColor = "&"+BaseColour;
-                    // Canvas.pRender.DetailColor = DetailColour;
+                if(paintingpart != null){
+                    painting.BodyPartId = paintingpart.ID;
                 }
+                if(chosenStuffs.Count >0){
+                    painting.With = String.Join(" and ",chosenStuffs.ToArray());
+                }
+
                 if(baseColor >=0){
-                    // foreach (byte key in ObjectChoices[baseColor].GetPart<LiquidVolume>().ComponentLiquids.Keys)
-                    // {
-                    //         ObjectChoices[baseColor].GetPart<LiquidVolume>().ComponentLiquidTypes[key].PouredOn(ObjectChoices[baseColor].GetPart<LiquidVolume>(), Canvas);
-                    // }
+                    ObjectChoices[baseColor].GetPart<LiquidVolume>().GetPrimaryLiquid().PouredOn(new LiquidVolume(ObjectChoices[baseColor].GetPart<LiquidVolume>().GetPrimaryLiquid().ID,1),Canvas);
                     ObjectChoices[baseColor].GetPart<LiquidVolume>().UseDrams(1);
                 }
                 if(detailColor >=0){
-                    // foreach (byte key in ObjectChoices[detailColor].GetPart<LiquidVolume>().ComponentLiquids.Keys)
-                    // {
-                    //         ObjectChoices[detailColor].GetPart<LiquidVolume>().ComponentLiquidTypes[key].PouredOn(ObjectChoices[detailColor].GetPart<LiquidVolume>(), Canvas);
-                    // }
+                    ObjectChoices[detailColor].GetPart<LiquidVolume>().GetPrimaryLiquid().PouredOn(new LiquidVolume(ObjectChoices[detailColor].GetPart<LiquidVolume>().GetPrimaryLiquid().ID,1),Canvas);
                     ObjectChoices[detailColor].GetPart<LiquidVolume>().UseDrams(1);
                 }
-
+                Canvas.ApplyEffect(painting);
 
             }
         }

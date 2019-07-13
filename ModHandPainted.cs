@@ -9,63 +9,53 @@ using System.Linq;
 namespace XRL.World.Parts
 {
 	[Serializable]
-	public class acegiak_ModHandPainted : IModification
+	public class acegiak_ModHandPainted : Effect
 	{
 		public string Engraving;
         public string BaseColour;
         public string DetailColour;
         public string With;
 
-        public List<List<string>> PaintedParts = new List<List<string>>();
-
-		public bool bLookedAt;
-
-
+        public int? BodyPartId;
 
 		public acegiak_ModHandPainted()
 		{
+            this.DisplayName = "painted";
+            this.Duration = 1200*10;
 		}
 
-		public acegiak_ModHandPainted(int Tier)
-			: base(Tier)
-		{
-		}
 
-		public override void Configure()
+		public override bool SameAs(Effect e)
 		{
-			WorksOnSelf = true;
-		}
+			acegiak_ModHandPainted painted = e as acegiak_ModHandPainted;
+            if(this.BodyPartId != null && painted.BodyPartId != null){
+                return this.BodyPartId == painted.BodyPartId;
+            }
 
-		public override bool SameAs(IPart p)
-		{
-			return false;
-		}
-
-		public override bool AllowStaticRegistration()
-		{
-			return true;
+			return base.SameAs(e);
 		}
 
 		public override void Register(GameObject Object)
 		{
-			Object.RegisterPartEvent(this, "GetDisplayName");
-			Object.RegisterPartEvent(this, "GetShortDisplayName");
-			Object.RegisterPartEvent(this, "GetShortDescription");
-			Object.RegisterPartEvent(this, "GetUnknownShortDescription");
-			Object.RegisterPartEvent(this, "Equipped");
-			Object.RegisterPartEvent(this, "Unequipped");
-			Object.RegisterPartEvent(this, "AfterLookedAt");
-			Object.RegisterPartEvent(this, "ApplyLiquidCovered");
+			Object.RegisterEffectEvent(this, "GetDisplayName");
+			Object.RegisterEffectEvent(this, "GetShortDisplayName");
+			Object.RegisterEffectEvent(this, "GetShortDescription");
+			Object.RegisterEffectEvent(this, "GetUnknownShortDescription");
+			Object.RegisterEffectEvent(this, "ApplyLiquidCovered");
 			base.Register(Object);
+		}
+		public override void Unregister(GameObject Object)
+		{
+			Object.UnregisterEffectEvent(this, "GetDisplayName");
+			Object.UnregisterEffectEvent(this, "GetShortDisplayName");
+			Object.UnregisterEffectEvent(this, "GetShortDescription");
+			Object.UnregisterEffectEvent(this, "GetUnknownShortDescription");
+			Object.UnregisterEffectEvent(this, "ApplyLiquidCovered");
+			base.Unregister(Object);
 		}
 
         public override bool Render(RenderEvent E)
 		{
-			if(PaintedParts.Count() > 0){
-                List<string> partstrings = PaintedParts[PaintedParts.Count-1];
-                E.ColorString = "&"+partstrings[1];
-                E.DetailColor = partstrings[2];
-            }
             if(BaseColour != null){
                 E.ColorString = "&"+BaseColour;
             }
@@ -81,44 +71,50 @@ namespace XRL.World.Parts
         if (E.ID == "GetShortDescription" || E.ID == "GetUnknownShortDescription")
 			{
 
-                string str = "";
-                if(PaintedParts.Count() > 0){
-                    foreach(List<string> partstrings in PaintedParts){
-                        BodyPart part = ParentObject.GetPart<Body>()._Body.GetPartByID(Int32.Parse(partstrings[0]));
-                        if(part != null){
-                            str+= "&C"+ParentObject.Its+" "+part.Name+" is &"+partstrings[1]+"p&"+partstrings[2]+"a&"+partstrings[1]+"i&"+partstrings[2]+"n&"+partstrings[1]+"t&"+partstrings[2]+"e&"+partstrings[1]+"d with "+partstrings[3]+
-                            ((partstrings[4] != null && partstrings[4] != "")?" in "+ partstrings[4]:"")
-                            +".&y\n";
-                        }
+                string str = "\n";
+                if(this.BodyPartId != null){
+                    BodyPart part = Object.GetPart<Body>()._Body.GetPartByID(BodyPartId.Value);
+                    if(part != null){
+                        str+= "&C"+Object.Its+" "+part.Name+" is ";
                     }
-                }else if(BaseColour != null && DetailColour != null && Engraving != null){
-				    str = "\n&"+BaseColour+"p&"+DetailColour+"a&"+BaseColour+"i&"+DetailColour+"n&"+BaseColour+"t&"+DetailColour+"e&"+BaseColour+"d with " + Engraving +(With!=null?" in "+With:"") +".&y\n";
+                }
+                if(BaseColour != null && DetailColour != null && Engraving != null){
+				    str += "&"+BaseColour+"p&"+DetailColour+"a&"+BaseColour+"i&"+DetailColour+"n&"+BaseColour+"t&"+DetailColour+"e&"+BaseColour+"d with " + Engraving +(With!=null?", depicted in "+With:"") +".&y\n";
                 }
 				E.SetParameter("Postfix", E.GetStringParameter("Postfix") + str);
 			}
-			else if ((E.ID == "GetDisplayName" || E.ID == "GetShortDisplayName") && (!ParentObject.Understood() || !ParentObject.HasProperName))
+			else if ((E.ID == "GetDisplayName" || E.ID == "GetShortDisplayName") && (!Object.Understood() || !Object.HasProperName))
 			{
                 string str = "";
-                if(PaintedParts.Count() > 0){
-                    foreach(List<string> partstrings in PaintedParts){
-                        BodyPart part = ParentObject.GetPart<Body>()._Body.GetPartByID(Int32.Parse(partstrings[0]));
-                        if(part != null){
-                            str+= "&"+partstrings[1]+"p&"+partstrings[2]+"a&"+partstrings[1]+"i&"+partstrings[2]+"n&"+partstrings[1]+"t&"+partstrings[2]+"e&"+partstrings[1]+"d &y";
-                        }
-                    }
-                }else if(BaseColour != null && DetailColour != null && Engraving != null){
+                if(BaseColour != null && DetailColour != null){
 				    str = "&"+BaseColour+"p&"+DetailColour+"a&"+BaseColour+"i&"+DetailColour+"n&"+BaseColour+"t&"+DetailColour+"e&"+BaseColour+"d &y";
                 }
 				E.GetParameter<StringBuilder>("Prefix").Append(str);
 			}
             if(E.ID == "ApplyLiquidCovered"){
-                BaseColour = null;
-                DetailColour = null;
-                Engraving = null;
-                With = null;
-                PaintedParts = new List<List<string>>();
+                // BaseColour = null;
+                // DetailColour = null;
+                // Engraving = null;
+                // With = null;
+                // BodyPartId = null;
+                // Object.RemoveEffect(this);
+                this.Duration -= 1200;
             }
 			return base.FireEvent(E);
 		}
+
+
+		public override string GetDetails()
+		{
+            string str = "";
+            if(this.BodyPartId != null){
+                BodyPart part = Object.GetPart<Body>()._Body.GetPartByID(BodyPartId.Value);
+                if(part != null){
+                    str+= Object.Its+" "+part.Name+" is ";
+                }
+            }
+			return str+"&"+BaseColour+"p&"+DetailColour+"a&"+BaseColour+"i&"+DetailColour+"n&"+BaseColour+"t&"+DetailColour+"e&"+BaseColour+"d with " + Engraving +(With!=null?", depicted in "+With:"") +".&y";
+		}
+
 	}
 }
