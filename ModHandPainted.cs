@@ -14,6 +14,7 @@ namespace XRL.World.Parts
 		public string Engraving;
         public string BaseColour;
         public string DetailColour;
+        public string With;
 
         public List<List<string>> PaintedParts = new List<List<string>>();
 
@@ -85,13 +86,13 @@ namespace XRL.World.Parts
                     foreach(List<string> partstrings in PaintedParts){
                         BodyPart part = ParentObject.GetPart<Body>()._Body.GetPartByID(Int32.Parse(partstrings[0]));
                         if(part != null){
-                            str+= "&C"+ParentObject.Its+" "+part.Name+" is &"+partstrings[1]+"p&"+partstrings[2]+"a&"+partstrings[1]+"i&"+partstrings[2]+"n&"+partstrings[1]+"t&"+partstrings[2]+"e&"+partstrings[1]+"d"+
-                            ((partstrings[4] != null && partstrings[4] != "")?" with "+ partstrings[4]:"")
-                            +"&"+partstrings[1]+": "+partstrings[3]+".&y\n";
+                            str+= "&C"+ParentObject.Its+" "+part.Name+" is &"+partstrings[1]+"p&"+partstrings[2]+"a&"+partstrings[1]+"i&"+partstrings[2]+"n&"+partstrings[1]+"t&"+partstrings[2]+"e&"+partstrings[1]+"d with "+partstrings[3]+
+                            ((partstrings[4] != null && partstrings[4] != "")?" in "+ partstrings[4]:"")
+                            +".&y\n";
                         }
                     }
                 }else if(BaseColour != null && DetailColour != null && Engraving != null){
-				    str = "\n&"+BaseColour+"p&"+DetailColour+"a&"+BaseColour+"i&"+DetailColour+"n&"+BaseColour+"t&"+DetailColour+"e&"+BaseColour+"d " + Engraving + "&y\n";
+				    str = "\n&"+BaseColour+"p&"+DetailColour+"a&"+BaseColour+"i&"+DetailColour+"n&"+BaseColour+"t&"+DetailColour+"e&"+BaseColour+"d with " + Engraving +(With!=null?" in "+With:"") +".&y\n";
                 }
 				E.SetParameter("Postfix", E.GetStringParameter("Postfix") + str);
 			}
@@ -114,6 +115,7 @@ namespace XRL.World.Parts
                 BaseColour = null;
                 DetailColour = null;
                 Engraving = null;
+                With = null;
                 PaintedParts = new List<List<string>>();
             }
 			return base.FireEvent(E);
