@@ -22,8 +22,13 @@ namespace XRL.World.Parts
             Debug.Log("Initializing Pigment Liquids.");
             
             for(int i=0;i < acegiak_LiquidDye.ColorNames.Keys.ToList().Count;i++){
-                LiquidVolume.ComponentLiquidTypes.Add(Convert.ToByte(acegiak_LiquidDye.ID+i), new acegiak_LiquidDye(acegiak_LiquidDye.ColorNames.Keys.ToList()[i]));
-			    LiquidVolume.ComponentLiquidNameMap.Add(acegiak_LiquidDye.ColorNames.Values.ToList()[i]+"dye", LiquidVolume.ComponentLiquidTypes[Convert.ToByte(acegiak_LiquidDye.ID+i)]);
+                acegiak_LiquidDye dye = new acegiak_LiquidDye(acegiak_LiquidDye.ColorNames.Keys.ToList()[i]);
+                dye.ID = Convert.ToByte(acegiak_LiquidDye.BaseID+i);
+                //dye.Name = dye.GetName(null);
+                Debug.Log((dye.ID).ToString()+": "+acegiak_LiquidDye.ColorNames.Values.ToList()[i]+"dye "+ acegiak_LiquidDye.ColorNames.Keys.ToList()[i]);
+                Debug.Log(dye.GetName(null)+" "+dye.Color);
+                LiquidVolume.ComponentLiquidTypes.Add(Convert.ToByte(dye.ID), dye);
+			    LiquidVolume.ComponentLiquidNameMap.Add(acegiak_LiquidDye.ColorNames.Values.ToList()[i]+"dye", LiquidVolume.ComponentLiquidTypes[Convert.ToByte(dye.ID)]);
             }
 
 			// LiquidVolume.ComponentLiquidTypes.Add(Convert.ToByte(acegiak_LiquidFurlingAgent.ID), new acegiak_LiquidFurlingAgent());

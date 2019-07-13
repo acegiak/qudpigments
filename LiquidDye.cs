@@ -7,6 +7,7 @@ using XRL.Rules;
 using XRL.World;
 using XRL.World.Parts;
 using System.Linq;
+using UnityEngine;
 
 
 namespace XRL.Liquids
@@ -14,7 +15,7 @@ namespace XRL.Liquids
 	[Serializable]
 	internal class acegiak_LiquidDye : BaseLiquid
 	{
-		public new const int ID = 140;
+		public new const int BaseID = 140;
 
 		public new const string Name = "dye";
 
@@ -45,13 +46,13 @@ namespace XRL.Liquids
 
 
 		public acegiak_LiquidDye()
-			: base(Convert.ToByte(ID), "dye", 350, 2000, 1.1f)
+			: base()
 		{
             this.Color = ColorNames.Keys.ToList().GetRandomElement();
 		}
 
         public acegiak_LiquidDye(string color)
-			: base(Convert.ToByte(ID), "dye", 350, 2000, 1.1f)
+			: base()
 		{
             this.Color = color;
 		}
@@ -75,9 +76,10 @@ namespace XRL.Liquids
 			return "&"+Color+""+ColorNames[Color]+" dye";
 		}
 
-		public override bool Drank(LiquidVolume Liquid, int Volume, GameObject Target, StringBuilder Message, ref bool ExitInterface)
+		public override bool Drank(LiquidVolume Liquid, int Volume, XRL.World.GameObject Target, StringBuilder Message, ref bool ExitInterface)
 		{
 			Message.Append("It tastes "+ColorNames[Color]+".");
+			Target.pRender.DetailColor = this.Color;
 			return true;
 		}
 
@@ -86,26 +88,24 @@ namespace XRL.Liquids
 			return "&"+Color+""+ColorNames[Color]+" stained";
 		}
 
-		public override void ObjectEnteredCell(LiquidVolume Liquid, GameObject GO)
+		public override void ObjectEnteredCell(LiquidVolume Liquid, XRL.World.GameObject GO)
 		{
-			// if (Liquid.MaxVolume != -1 || !GO.HasPart("Body") || !GO.PhaseAndFlightMatches(Liquid.ParentObject) || GO.GetIntProperty("Slimewalking") > 0 || Liquid.Volume > 1000)
-			// {
-			// 	return;
-			// }
-			// int num = 10 + (int)((double)(Liquid.ComponentLiquids[21] * 5) / 1000.0);
-			// if (!GO.MakeSave("Agility", num - GO.GetIntProperty("Stable"), null, null, "Dye Slip Move"))
-			// {
-			// 	if (GO.IsPlayer())
-			// 	{
-			// 		MessageQueue.AddPlayerMessage("&CYou slip on the dye!");
-			// 	}
-			// 	GO.ParticleText("&C" + '\u001a');
-			// 	GO.FireEvent(Event.New("CommandMove", "Direction", Directions.GetRandomDirection(), "EnergyCost", 0));
-			// 	if (GO.IsPlayer() && GO.pPhysics.CurrentCell != null)
-			// 	{
-			// 		GO.pPhysics.CurrentCell.ParentZone.SetActive();
-			// 	}
-			// }
+			if (Liquid.MaxVolume != -1 || !GO.HasPart("Body") || !GO.PhaseAndFlightMatches(Liquid.ParentObject) || Liquid.Volume > 1000)
+			{
+				return;
+			}
+			int num = 10 + (int)((double)(Liquid.ComponentLiquids[this.ID] * 5) / 1000.0);
+			if (!GO.MakeSave("Agility", num , null, null, "Dye"))
+			{
+				if (GO.IsPlayer())
+				{
+					MessageQueue.AddPlayerMessage("&CYou get covered in "+ColorNames[this.Color]+" dye!");
+				}
+				GO.pRender.TileColor="&"+this.Color;
+				GO.pRender.ColorString = "&"+this.Color;
+				GO.pRender.DetailColor =ToggleCase(this.Color);
+				
+			}
 		}
 
 		public override void RenderSmearPrimary(LiquidVolume Liquid, RenderEvent eRender)
@@ -122,7 +122,7 @@ namespace XRL.Liquids
 		{
 			if (Liquid == null || Liquid.ComponentLiquids[Convert.ToByte(ID)] > 0)
 			{
-				return "&"+Color+""+ColorNames[Color]+" stained";
+				return "&"+Color+""+ColorNames[Color]+"";
 			}
 			return null;
 		}
@@ -175,6 +175,23 @@ namespace XRL.Liquids
 		public override void RenderSecondary(LiquidVolume Liquid, RenderEvent eRender)
 		{
 			eRender.ColorString += "&"+Color;
+		}
+
+		public override bool PouredOn(LiquidVolume Liquid, XRL.World.GameObject GO)
+		{
+			// if (Liquid.ComponentLiquids.Count != 1)
+			// {
+			// 	return true;
+			// }
+			if (Liquid.Volume > 0)
+			{
+				GO.pRender.TileColor="&"+this.Color;
+				GO.pRender.ColorString = "&"+this.Color;
+				GO.pRender.DetailColor =ToggleCase(this.Color);
+
+
+			}
+			return true;
 		}
 
 

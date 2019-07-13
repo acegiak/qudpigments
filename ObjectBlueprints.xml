@@ -8,8 +8,8 @@
 
 
   <object Name="Dye Phial" Inherits="Phial">
-    <part Name="LiquidVolume" StartVolume="1d3" InitialLiquid="charcoaldye-1000" />
-      <tag Name="ChooseToPreserve"></tag>
+    <part Name="LiquidVolume" StartVolume="1d3" InitialLiquid="ashdye-1000"/>
+    <tag Name="ChooseToPreserve"></tag>
     <part Name="TinkerItem" Bits="05" CanDisassemble="false" CanBuild="true" CanRepair="false"></part>
   </object>
 
@@ -19,15 +19,14 @@
     <part Name="Render" DisplayName="flower bush" RenderString="12" ColorString="&amp;G" Tile="Terrain/sw_lahbloom.bmp" TileColor="&amp;g" DetailColor="w" Occluding="false"></part>
     <part Name="Harvestable" OnSuccess="Flower" OnSuccessAmount="1d3" StartRipeChance="1:3" RipeColor="&amp;g" RipeTileColor="&amp;g" RipeDetailColor="M" UnripeColor="&amp;g" UnripeTileColor="&amp;g" UnripeDetailColor="G"></part>
     <part Name="Description" Short="A simple bush of colourful blooms."></part>
-    <tag Name="DynamicObjectsTable:Flowerfields_FarmablePlants"></tag>
-    <tag Name="DynamicObjectsTable:Flowerfields_Plants"></tag>
   </object>
   
-  <object Name="Flower" Inherits="Snack">
+  <object Name="DyeFlower" Inherits="Snack">
      <part Name="Render" DisplayName="flowers" ColorString="&amp;g" DetailColor="M" RenderString="'" Tile="Items/sw_lah_petals.bmp" />
       <part Name="Description" Short="Simple petals on the end of a stem." /> 
       <part Name="Food" Satiation="Snack" Thirst="0" Healing="0" Message="A floral taste, but not a filling meal." />
-      <part Name="PreservableItem" Result="Dye Phial" Number="1d3" />
+      <part Name="PreservableItem" Result="Dye Phial" Number="1" />
+        <tag Name="ChooseToPreserve"></tag>
     </object>
 
 
@@ -35,14 +34,17 @@
         <part Name="Render" DisplayName="&amp;Kgrave tulip bush" RenderString="12" ColorString="&amp;g" Tile="Terrain/sw_lahbloom.bmp" TileColor="&amp;g" DetailColor="K" Occluding="false"></part>
         <part Name="Harvestable" OnSuccess="Charcoal Flower" RipeColor="&amp;g" RipeTileColor="&amp;g" RipeDetailColor="K" UnripeColor="&amp;g" UnripeTileColor="&amp;g" UnripeDetailColor="G"></part>
         <part Name="Description" Short="A flowering bush."></part>
+        <tag Name="DynamicObjectsTable:Flowerfields_FarmablePlants"></tag>
+        <tag Name="DynamicObjectsTable:Flowerfields_Plants"></tag>
     </object> 
-    <object Name="Charcoal Flower" Inherits="Snack">
+    <object Name="Charcoal Flower" Inherits="DyeFlower">
        <part Name="Render" DisplayName="&amp;Kgrave tulip" ColorString="&amp;g" DetailColor="K" RenderString="'" Tile="Items/sw_lah_petals.bmp" />
         <part Name="Description" Short="Simple petals on the end of a stem." /> 
         <part Name="PreservableItem" Result="Charcoal Dye Phial" Number="1" />
       </object>
-    <object Name="Charcoal Dye Phial" Inherits="Dye Phial">
-        <part Name="LiquidVolume" InitialLiquid="charcoaldye-1000" />
+    <object Name="Charcoal Dye Phial" Inherits="Phial">
+        <part Name="LiquidVolume" InitialLiquid="charcoaldye-1000" StartVolume="1d3" />
+        <tag Name="ChooseToPreserve"></tag>
     </object>
 
 
@@ -50,14 +52,16 @@
         <part Name="Render" DisplayName="&amp;ygrave tulip bush" RenderString="12" ColorString="&amp;g" Tile="Terrain/sw_lahbloom.bmp" TileColor="&amp;g" DetailColor="y" Occluding="false"></part>
         <part Name="Harvestable" OnSuccess="Ash Flower" RipeColor="&amp;g" RipeTileColor="&amp;g" RipeDetailColor="y" UnripeColor="&amp;g" UnripeTileColor="&amp;g" UnripeDetailColor="G"></part>
         <part Name="Description" Short="A flowering bush."></part>
+        <tag Name="DynamicObjectsTable:Flowerfields_FarmablePlants"></tag>
+        <tag Name="DynamicObjectsTable:Flowerfields_Plants"></tag>
     </object> 
-    <object Name="Ash Flower" Inherits="Snack">
+    <object Name="Ash Flower" Inherits="DyeFlower">
        <part Name="Render" DisplayName="&amp;ygrave tulip" ColorString="&amp;g" DetailColor="y" RenderString="'" Tile="Items/sw_lah_petals.bmp" />
         <part Name="Description" Short="Simple petals on the end of a stem." /> 
         <part Name="PreservableItem" Result="Ash Dye Phial" Number="1" />
       </object>
-    <object Name="Ash Dye Phial" Inherits="Dye Phial">
-        <part Name="LiquidVolume" InitialLiquid="ashdye-1000" />
+    <object Name="Ash Dye Phial" Inherits="Phial">
+        <part Name="LiquidVolume" InitialLiquid="ashdye-1000" StartVolume="1d3" />
     </object>
 
 
@@ -65,14 +69,16 @@
         <part Name="Render" DisplayName="&amp;kgrave tulip bush" RenderString="12" ColorString="&amp;g" Tile="Terrain/sw_lahbloom.bmp" TileColor="&amp;g" DetailColor="k" Occluding="false"></part>
         <part Name="Harvestable" OnSuccess="Black Flower" RipeColor="&amp;g" RipeTileColor="&amp;g" RipeDetailColor="k" UnripeColor="&amp;g" UnripeTileColor="&amp;g" UnripeDetailColor="G"></part>
         <part Name="Description" Short="A flowering bush."></part>
+        <tag Name="DynamicObjectsTable:Flowerfields_FarmablePlants"></tag>
+        <tag Name="DynamicObjectsTable:Flowerfields_Plants"></tag>
     </object> 
-    <object Name="Black Flower" Inherits="Snack">
+    <object Name="Black Flower" Inherits="DyeFlower">
        <part Name="Render" DisplayName="&amp;kgrave tulip" ColorString="&amp;g" DetailColor="k" RenderString="'" Tile="Items/sw_lah_petals.bmp" />
         <part Name="Description" Short="Simple petals on the end of a stem." /> 
         <part Name="PreservableItem" Result="Black Dye Phial" Number="1" />
       </object>
-    <object Name="Black Dye Phial" Inherits="Dye Phial">
-        <part Name="LiquidVolume" InitialLiquid="Blackdye-1000" />
+    <object Name="Black Dye Phial" Inherits="Phial">
+        <part Name="LiquidVolume" InitialLiquid="blackdye-1000" StartVolume="1d3" />
     </object>
 
 
@@ -82,14 +88,16 @@
         <part Name="Render" DisplayName="&amp;Ygrave tulip bush" RenderString="12" ColorString="&amp;g" Tile="Terrain/sw_lahbloom.bmp" TileColor="&amp;g" DetailColor="Y" Occluding="false"></part>
         <part Name="Harvestable" OnSuccess="White Flower" RipeColor="&amp;g" RipeTileColor="&amp;g" RipeDetailColor="Y" UnripeColor="&amp;g" UnripeTileColor="&amp;g" UnripeDetailColor="G"></part>
         <part Name="Description" Short="A flowering bush."></part>
+        <tag Name="DynamicObjectsTable:Flowerfields_FarmablePlants"></tag>
+        <tag Name="DynamicObjectsTable:Flowerfields_Plants"></tag>
     </object> 
-    <object Name="White Flower" Inherits="Snack">
+    <object Name="White Flower" Inherits="DyeFlower">
        <part Name="Render" DisplayName="&amp;Ygrave tulip" ColorString="&amp;g" DetailColor="Y" RenderString="'" Tile="Items/sw_lah_petals.bmp" />
         <part Name="Description" Short="Simple petals on the end of a stem." /> 
         <part Name="PreservableItem" Result="White Dye Phial" Number="1" />
       </object>
-    <object Name="White Dye Phial" Inherits="Dye Phial">
-        <part Name="LiquidVolume" InitialLiquid="whitedye-1000" />
+    <object Name="White Dye Phial" Inherits="Phial">
+        <part Name="LiquidVolume" InitialLiquid="whitedye-1000" StartVolume="1d3" />
     </object>
 
 
@@ -99,14 +107,16 @@
         <part Name="Render" DisplayName="&amp;rgrave tulip bush" RenderString="12" ColorString="&amp;g" Tile="Terrain/sw_lahbloom.bmp" TileColor="&amp;g" DetailColor="r" Occluding="false"></part>
         <part Name="Harvestable" OnSuccess="Crimson Flower" RipeColor="&amp;g" RipeTileColor="&amp;g" RipeDetailColor="r" UnripeColor="&amp;g" UnripeTileColor="&amp;g" UnripeDetailColor="G"></part>
         <part Name="Description" Short="A flowering bush."></part>
+        <tag Name="DynamicObjectsTable:Flowerfields_FarmablePlants"></tag>
+        <tag Name="DynamicObjectsTable:Flowerfields_Plants"></tag>
     </object> 
-    <object Name="Crimson Flower" Inherits="Snack">
+    <object Name="Crimson Flower" Inherits="DyeFlower">
        <part Name="Render" DisplayName="&amp;rgrave tulip" ColorString="&amp;g" DetailColor="r" RenderString="'" Tile="Items/sw_lah_petals.bmp" />
         <part Name="Description" Short="Simple petals on the end of a stem." /> 
         <part Name="PreservableItem" Result="Crimson Dye Phial" Number="1" />
       </object>
-    <object Name="Crimson Dye Phial" Inherits="Dye Phial">
-        <part Name="LiquidVolume" InitialLiquid="crimsondye-1000" />
+    <object Name="Crimson Dye Phial" Inherits="Phial">
+        <part Name="LiquidVolume" InitialLiquid="crimsondye-1000" StartVolume="1d3" />
     </object>
 
 
@@ -116,14 +126,16 @@
         <part Name="Render" DisplayName="&amp;Rgrave tulip bush" RenderString="12" ColorString="&amp;g" Tile="Terrain/sw_lahbloom.bmp" TileColor="&amp;g" DetailColor="R" Occluding="false"></part>
         <part Name="Harvestable" OnSuccess="Scarlet Flower" RipeColor="&amp;g" RipeTileColor="&amp;g" RipeDetailColor="R" UnripeColor="&amp;g" UnripeTileColor="&amp;g" UnripeDetailColor="G"></part>
         <part Name="Description" Short="A flowering bush."></part>
+        <tag Name="DynamicObjectsTable:Flowerfields_FarmablePlants"></tag>
+        <tag Name="DynamicObjectsTable:Flowerfields_Plants"></tag>
     </object> 
-    <object Name="Scarlet Flower" Inherits="Snack">
+    <object Name="Scarlet Flower" Inherits="DyeFlower">
        <part Name="Render" DisplayName="&amp;Rgrave tulip" ColorString="&amp;g" DetailColor="R" RenderString="'" Tile="Items/sw_lah_petals.bmp" />
         <part Name="Description" Short="Simple petals on the end of a stem." /> 
         <part Name="PreservableItem" Result="Scarlet Dye Phial" Number="1" />
       </object>
-    <object Name="Scarlet Dye Phial" Inherits="Dye Phial">
-        <part Name="LiquidVolume" InitialLiquid="scarletdye-1000" />
+    <object Name="Scarlet Dye Phial" Inherits="Phial">
+        <part Name="LiquidVolume" InitialLiquid="scarletdye-1000" StartVolume="1d3" />
     </object>
 
 
@@ -133,14 +145,16 @@
         <part Name="Render" DisplayName="&amp;Ograve tulip bush" RenderString="12" ColorString="&amp;g" Tile="Terrain/sw_lahbloom.bmp" TileColor="&amp;g" DetailColor="O" Occluding="false"></part>
         <part Name="Harvestable" OnSuccess="Gold Flower" RipeColor="&amp;g" RipeTileColor="&amp;g" RipeDetailColor="O" UnripeColor="&amp;g" UnripeTileColor="&amp;g" UnripeDetailColor="G"></part>
         <part Name="Description" Short="A flowering bush."></part>
+        <tag Name="DynamicObjectsTable:Flowerfields_FarmablePlants"></tag>
+        <tag Name="DynamicObjectsTable:Flowerfields_Plants"></tag>
     </object> 
-    <object Name="Gold Flower" Inherits="Snack">
+    <object Name="Gold Flower" Inherits="DyeFlower">
        <part Name="Render" DisplayName="&amp;Ograve tulip" ColorString="&amp;g" DetailColor="O" RenderString="'" Tile="Items/sw_lah_petals.bmp" />
         <part Name="Description" Short="Simple petals on the end of a stem." /> 
         <part Name="PreservableItem" Result="Gold Dye Phial" Number="1" />
       </object>
-    <object Name="Gold Dye Phial" Inherits="Dye Phial">
-        <part Name="LiquidVolume" InitialLiquid="golddye-1000" />
+    <object Name="Gold Dye Phial" Inherits="Phial">
+        <part Name="LiquidVolume" InitialLiquid="golddye-1000" StartVolume="1d3" />
     </object>
 
 
@@ -148,14 +162,16 @@
         <part Name="Render" DisplayName="&amp;ograve tulip bush" RenderString="12" ColorString="&amp;g" Tile="Terrain/sw_lahbloom.bmp" TileColor="&amp;g" DetailColor="o" Occluding="false"></part>
         <part Name="Harvestable" OnSuccess="Orange Flower" RipeColor="&amp;g" RipeTileColor="&amp;g" RipeDetailColor="o" UnripeColor="&amp;g" UnripeTileColor="&amp;g" UnripeDetailColor="G"></part>
         <part Name="Description" Short="A flowering bush."></part>
+        <tag Name="DynamicObjectsTable:Flowerfields_FarmablePlants"></tag>
+        <tag Name="DynamicObjectsTable:Flowerfields_Plants"></tag>
     </object> 
-    <object Name="Orange Flower" Inherits="Snack">
+    <object Name="Orange Flower" Inherits="DyeFlower">
        <part Name="Render" DisplayName="&amp;ograve tulip" ColorString="&amp;g" DetailColor="o" RenderString="'" Tile="Items/sw_lah_petals.bmp" />
         <part Name="Description" Short="Simple petals on the end of a stem." /> 
         <part Name="PreservableItem" Result="Orange Dye Phial" Number="1" />
       </object>
-    <object Name="Orange Dye Phial" Inherits="Dye Phial">
-        <part Name="LiquidVolume" InitialLiquid="orangedye-1000" />
+    <object Name="Orange Dye Phial" Inherits="Phial">
+        <part Name="LiquidVolume" InitialLiquid="orangedye-1000" StartVolume="1d3" />
     </object>
 
 
@@ -163,14 +179,16 @@
         <part Name="Render" DisplayName="&amp;Wgrave tulip bush" RenderString="12" ColorString="&amp;g" Tile="Terrain/sw_lahbloom.bmp" TileColor="&amp;g" DetailColor="W" Occluding="false"></part>
         <part Name="Harvestable" OnSuccess="Yellow Flower" RipeColor="&amp;g" RipeTileColor="&amp;g" RipeDetailColor="W" UnripeColor="&amp;g" UnripeTileColor="&amp;g" UnripeDetailColor="G"></part>
         <part Name="Description" Short="A flowering bush."></part>
+        <tag Name="DynamicObjectsTable:Flowerfields_FarmablePlants"></tag>
+        <tag Name="DynamicObjectsTable:Flowerfields_Plants"></tag>
     </object> 
-    <object Name="Yellow Flower" Inherits="Snack">
+    <object Name="Yellow Flower" Inherits="DyeFlower">
        <part Name="Render" DisplayName="&amp;Wgrave tulip" ColorString="&amp;g" DetailColor="W" RenderString="'" Tile="Items/sw_lah_petals.bmp" />
         <part Name="Description" Short="Simple petals on the end of a stem." /> 
         <part Name="PreservableItem" Result="Yellow Dye Phial" Number="1" />
       </object>
-    <object Name="Yellow Dye Phial" Inherits="Dye Phial">
-        <part Name="LiquidVolume" InitialLiquid="yellowdye-1000" />
+    <object Name="Yellow Dye Phial" Inherits="Phial">
+        <part Name="LiquidVolume" InitialLiquid="yellowdye-1000" StartVolume="1d3" />
     </object>
 
 
@@ -178,14 +196,16 @@
         <part Name="Render" DisplayName="&amp;wgrave tulip bush" RenderString="12" ColorString="&amp;g" Tile="Terrain/sw_lahbloom.bmp" TileColor="&amp;g" DetailColor="w" Occluding="false"></part>
         <part Name="Harvestable" OnSuccess="Brown Flower" RipeColor="&amp;g" RipeTileColor="&amp;g" RipeDetailColor="w" UnripeColor="&amp;g" UnripeTileColor="&amp;g" UnripeDetailColor="G"></part>
         <part Name="Description" Short="A flowering bush."></part>
+        <tag Name="DynamicObjectsTable:Flowerfields_FarmablePlants"></tag>
+        <tag Name="DynamicObjectsTable:Flowerfields_Plants"></tag>
     </object> 
-    <object Name="Brown Flower" Inherits="Snack">
+    <object Name="Brown Flower" Inherits="DyeFlower">
        <part Name="Render" DisplayName="&amp;wgrave tulip" ColorString="&amp;g" DetailColor="w" RenderString="'" Tile="Items/sw_lah_petals.bmp" />
         <part Name="Description" Short="Simple petals on the end of a stem." /> 
         <part Name="PreservableItem" Result="Brown Dye Phial" Number="1" />
       </object>
-    <object Name="Brown Dye Phial" Inherits="Dye Phial">
-        <part Name="LiquidVolume" InitialLiquid="browndye-1000" />
+    <object Name="Brown Dye Phial" Inherits="Phial">
+        <part Name="LiquidVolume" InitialLiquid="browndye-1000" StartVolume="1d3" />
     </object>
 
 
@@ -193,14 +213,16 @@
         <part Name="Render" DisplayName="&amp;Ggrave tulip bush" RenderString="12" ColorString="&amp;g" Tile="Terrain/sw_lahbloom.bmp" TileColor="&amp;Y" DetailColor="G" Occluding="false"></part>
         <part Name="Harvestable" OnSuccess="Lime Flower" RipeColor="&amp;Y" RipeTileColor="&amp;Y" RipeDetailColor="G" UnripeColor="&amp;Y" UnripeTileColor="&amp;Y" UnripeDetailColor="G"></part>
         <part Name="Description" Short="A flowering bush."></part>
+        <tag Name="DynamicObjectsTable:Flowerfields_FarmablePlants"></tag>
+        <tag Name="DynamicObjectsTable:Flowerfields_Plants"></tag>
     </object> 
-    <object Name="Lime Flower" Inherits="Snack">
+    <object Name="Lime Flower" Inherits="DyeFlower">
        <part Name="Render" DisplayName="&amp;Ggrave tulip" ColorString="&amp;Y" DetailColor="G" RenderString="'" Tile="Items/sw_lah_petals.bmp" />
         <part Name="Description" Short="Simple petals on the end of a stem." /> 
         <part Name="PreservableItem" Result="Lime Dye Phial" Number="1" />
       </object>
-    <object Name="Lime Dye Phial" Inherits="Dye Phial">
-        <part Name="LiquidVolume" InitialLiquid="limedye-1000" />
+    <object Name="Lime Dye Phial" Inherits="Phial">
+        <part Name="LiquidVolume" InitialLiquid="limedye-1000" StartVolume="1d3" />
     </object>
 
 
@@ -208,14 +230,16 @@
         <part Name="Render" DisplayName="&amp;ggrave tulip bush" RenderString="12" ColorString="&amp;Y" Tile="Terrain/sw_lahbloom.bmp" TileColor="&amp;Y" DetailColor="g" Occluding="false"></part>
         <part Name="Harvestable" OnSuccess="Green Flower" RipeColor="&amp;Y" RipeTileColor="&amp;Y" RipeDetailColor="g" UnripeColor="&amp;Y" UnripeTileColor="&amp;Y" UnripeDetailColor="y"></part>
         <part Name="Description" Short="A flowering bush."></part>
+        <tag Name="DynamicObjectsTable:Flowerfields_FarmablePlants"></tag>
+        <tag Name="DynamicObjectsTable:Flowerfields_Plants"></tag>
     </object> 
-    <object Name="Green Flower" Inherits="Snack">
+    <object Name="Green Flower" Inherits="DyeFlower">
        <part Name="Render" DisplayName="&amp;ggrave tulip" ColorString="&amp;Y" DetailColor="g" RenderString="'" Tile="Items/sw_lah_petals.bmp" />
         <part Name="Description" Short="Simple petals on the end of a stem." /> 
         <part Name="PreservableItem" Result="Green Dye Phial" Number="1" />
       </object>
-    <object Name="Green Dye Phial" Inherits="Dye Phial">
-        <part Name="LiquidVolume" InitialLiquid="greendye-1000" />
+    <object Name="Green Dye Phial" Inherits="Phial">
+        <part Name="LiquidVolume" InitialLiquid="greendye-1000" StartVolume="1d3" />
     </object>
 
 
@@ -223,14 +247,16 @@
         <part Name="Render" DisplayName="&amp;bgrave tulip bush" RenderString="12" ColorString="&amp;g" Tile="Terrain/sw_lahbloom.bmp" TileColor="&amp;g" DetailColor="b" Occluding="false"></part>
         <part Name="Harvestable" OnSuccess="Blue Flower" RipeColor="&amp;g" RipeTileColor="&amp;g" RipeDetailColor="b" UnripeColor="&amp;g" UnripeTileColor="&amp;g" UnripeDetailColor="G"></part>
         <part Name="Description" Short="A flowering bush."></part>
+        <tag Name="DynamicObjectsTable:Flowerfields_FarmablePlants"></tag>
+        <tag Name="DynamicObjectsTable:Flowerfields_Plants"></tag>
     </object> 
-    <object Name="Blue Flower" Inherits="Snack">
+    <object Name="Blue Flower" Inherits="DyeFlower">
        <part Name="Render" DisplayName="&amp;bgrave tulip" ColorString="&amp;g" DetailColor="b" RenderString="'" Tile="Items/sw_lah_petals.bmp" />
         <part Name="Description" Short="Simple petals on the end of a stem." /> 
         <part Name="PreservableItem" Result="Blue Dye Phial" Number="1" />
       </object>
-    <object Name="Blue Dye Phial" Inherits="Dye Phial">
-        <part Name="LiquidVolume" InitialLiquid="bluedye-1000" />
+    <object Name="Blue Dye Phial" Inherits="Phial">
+        <part Name="LiquidVolume" InitialLiquid="bluedye-1000" StartVolume="1d3" />
     </object>
 
 
@@ -238,14 +264,16 @@
         <part Name="Render" DisplayName="&amp;Bgrave tulip bush" RenderString="12" ColorString="&amp;g" Tile="Terrain/sw_lahbloom.bmp" TileColor="&amp;g" DetailColor="B" Occluding="false"></part>
         <part Name="Harvestable" OnSuccess="Cerulean Flower" RipeColor="&amp;g" RipeTileColor="&amp;g" RipeDetailColor="B" UnripeColor="&amp;g" UnripeTileColor="&amp;g" UnripeDetailColor="G"></part>
         <part Name="Description" Short="A flowering bush."></part>
+        <tag Name="DynamicObjectsTable:Flowerfields_FarmablePlants"></tag>
+        <tag Name="DynamicObjectsTable:Flowerfields_Plants"></tag>
     </object> 
-    <object Name="Cerulean Flower" Inherits="Snack">
+    <object Name="Cerulean Flower" Inherits="DyeFlower">
        <part Name="Render" DisplayName="&amp;Bgrave tulip" ColorString="&amp;g" DetailColor="B" RenderString="'" Tile="Items/sw_lah_petals.bmp" />
         <part Name="Description" Short="Simple petals on the end of a stem." /> 
         <part Name="PreservableItem" Result="Cerulean Dye Phial" Number="1" />
       </object>
-    <object Name="Cerulean Dye Phial" Inherits="Dye Phial">
-        <part Name="LiquidVolume" InitialLiquid="ceruleandye-1000" />
+    <object Name="Cerulean Dye Phial" Inherits="Phial">
+        <part Name="LiquidVolume" InitialLiquid="ceruleandye-1000" StartVolume="1d3" />
     </object>
 
 
@@ -253,14 +281,16 @@
         <part Name="Render" DisplayName="&amp;mgrave tulip bush" RenderString="12" ColorString="&amp;g" Tile="Terrain/sw_lahbloom.bmp" TileColor="&amp;g" DetailColor="m" Occluding="false"></part>
         <part Name="Harvestable" OnSuccess="Violet Flower" RipeColor="&amp;g" RipeTileColor="&amp;g" RipeDetailColor="m" UnripeColor="&amp;g" UnripeTileColor="&amp;g" UnripeDetailColor="G"></part>
         <part Name="Description" Short="A flowering bush."></part>
+        <tag Name="DynamicObjectsTable:Flowerfields_FarmablePlants"></tag>
+        <tag Name="DynamicObjectsTable:Flowerfields_Plants"></tag>
     </object> 
-    <object Name="Violet Flower" Inherits="Snack">
+    <object Name="Violet Flower" Inherits="DyeFlower">
        <part Name="Render" DisplayName="&amp;mgrave tulip" ColorString="&amp;g" DetailColor="m" RenderString="'" Tile="Items/sw_lah_petals.bmp" />
         <part Name="Description" Short="Simple petals on the end of a stem." /> 
         <part Name="PreservableItem" Result="Violet Dye Phial" Number="1" />
       </object>
-    <object Name="Violet Dye Phial" Inherits="Dye Phial">
-        <part Name="LiquidVolume" InitialLiquid="violetdye-1000" />
+    <object Name="Violet Dye Phial" Inherits="Phial">
+        <part Name="LiquidVolume" InitialLiquid="violetdye-1000" StartVolume="1d3" />
     </object>
 
 
@@ -268,14 +298,16 @@
         <part Name="Render" DisplayName="&amp;Mgrave tulip bush" RenderString="12" ColorString="&amp;g" Tile="Terrain/sw_lahbloom.bmp" TileColor="&amp;g" DetailColor="M" Occluding="false"></part>
         <part Name="Harvestable" OnSuccess="Magenta Flower" RipeColor="&amp;g" RipeTileColor="&amp;g" RipeDetailColor="M" UnripeColor="&amp;g" UnripeTileColor="&amp;g" UnripeDetailColor="G"></part>
         <part Name="Description" Short="A flowering bush."></part>
+        <tag Name="DynamicObjectsTable:Flowerfields_FarmablePlants"></tag>
+        <tag Name="DynamicObjectsTable:Flowerfields_Plants"></tag>
     </object> 
-    <object Name="Magenta Flower" Inherits="Snack">
+    <object Name="Magenta Flower" Inherits="DyeFlower">
        <part Name="Render" DisplayName="&amp;Mgrave tulip" ColorString="&amp;g" DetailColor="M" RenderString="'" Tile="Items/sw_lah_petals.bmp" />
         <part Name="Description" Short="Simple petals on the end of a stem." /> 
         <part Name="PreservableItem" Result="Magenta Dye Phial" Number="1" />
       </object>
-    <object Name="Magenta Dye Phial" Inherits="Dye Phial">
-        <part Name="LiquidVolume" InitialLiquid="magentadye-1000" />
+    <object Name="Magenta Dye Phial" Inherits="Phial">
+        <part Name="LiquidVolume" InitialLiquid="magentadye-1000" StartVolume="1d3" />
     </object>
 
 
@@ -283,14 +315,16 @@
         <part Name="Render" DisplayName="&amp;cgrave tulip bush" RenderString="12" ColorString="&amp;g" Tile="Terrain/sw_lahbloom.bmp" TileColor="&amp;g" DetailColor="c" Occluding="false"></part>
         <part Name="Harvestable" OnSuccess="Teal Flower" RipeColor="&amp;g" RipeTileColor="&amp;g" RipeDetailColor="c" UnripeColor="&amp;g" UnripeTileColor="&amp;g" UnripeDetailColor="G"></part>
         <part Name="Description" Short="A flowering bush."></part>
+        <tag Name="DynamicObjectsTable:Flowerfields_FarmablePlants"></tag>
+        <tag Name="DynamicObjectsTable:Flowerfields_Plants"></tag>
     </object> 
-    <object Name="Teal Flower" Inherits="Snack">
+    <object Name="Teal Flower" Inherits="DyeFlower">
        <part Name="Render" DisplayName="&amp;cgrave tulip" ColorString="&amp;g" DetailColor="c" RenderString="'" Tile="Items/sw_lah_petals.bmp" />
         <part Name="Description" Short="Simple petals on the end of a stem." /> 
         <part Name="PreservableItem" Result="Teal Dye Phial" Number="1" />
       </object>
-    <object Name="Teal Dye Phial" Inherits="Dye Phial">
-        <part Name="LiquidVolume" InitialLiquid="tealdye-1000" />
+    <object Name="Teal Dye Phial" Inherits="Phial">
+        <part Name="LiquidVolume" InitialLiquid="tealdye-1000" StartVolume="1d3" />
     </object>
 
 
@@ -298,13 +332,15 @@
         <part Name="Render" DisplayName="&amp;Cgrave tulip bush" RenderString="12" ColorString="&amp;g" Tile="Terrain/sw_lahbloom.bmp" TileColor="&amp;g" DetailColor="C" Occluding="false"></part>
         <part Name="Harvestable" OnSuccess="Turquoise Flower" RipeColor="&amp;g" RipeTileColor="&amp;g" RipeDetailColor="C" UnripeColor="&amp;g" UnripeTileColor="&amp;g" UnripeDetailColor="G"></part>
         <part Name="Description" Short="A flowering bush."></part>
+        <tag Name="DynamicObjectsTable:Flowerfields_FarmablePlants"></tag>
+        <tag Name="DynamicObjectsTable:Flowerfields_Plants"></tag>
     </object> 
-    <object Name="Turquoise Flower" Inherits="Snack">
+    <object Name="Turquoise Flower" Inherits="DyeFlower">
        <part Name="Render" DisplayName="&amp;Cgrave tulip" ColorString="&amp;g" DetailColor="C" RenderString="'" Tile="Items/sw_lah_petals.bmp" />
         <part Name="Description" Short="Simple petals on the end of a stem." /> 
         <part Name="PreservableItem" Result="Turquoise Dye Phial" Number="1" />
       </object>
-    <object Name="Turquoise Dye Phial" Inherits="Dye Phial">
-        <part Name="LiquidVolume" InitialLiquid="turquoisedye-1000" />
+    <object Name="Turquoise Dye Phial" Inherits="Phial">
+        <part Name="LiquidVolume" InitialLiquid="turquoisedye-1000" StartVolume="1d3" />
     </object>
 </objects>
