@@ -6,6 +6,7 @@ using UnityEngine;
 using XRL.Liquids;
 using System.Linq;
 using System.Text;
+using Qud.API;
 
 namespace XRL.World.Parts.Skill
 {
@@ -72,6 +73,19 @@ namespace XRL.World.Parts.Skill
                 ch = 'a';
                 HotkeyList.Add(ch);
                 ch = (char)(ch + 1);
+
+                List<acegiak_PaintingRecipe> recipes = new List<acegiak_PaintingRecipe>();
+
+
+                foreach(JournalObservation observation in JournalAPI.GetObservations(null)){
+                    if(observation is acegiak_PaintingRecipe){
+                        acegiak_PaintingRecipe recipe = observation as acegiak_PaintingRecipe;
+                        recipes.Add(recipe);
+                        ChoiceList.Add(recipe.FormName);
+                        HotkeyList.Add(ch);
+                        ch = (char)(ch + 1);
+                    }
+                }
                 string BaseColour = "";
                 string DetailColour = "";
                 List<string> chosenStuffs = new List<string>();
@@ -124,7 +138,8 @@ namespace XRL.World.Parts.Skill
                     }else{
                         StringBuilder c = new StringBuilder();
                         ObjectChoices[detailColor].GetPart<LiquidVolume>().AppendLiquidName(c);
-                        chosenStuffs.Add(c.ToString());                    }
+                        chosenStuffs.Add(c.ToString());
+                    }
                 }
                 if(DetailColour == ""){
                     DetailColour = Canvas.pRender.DetailColor;
@@ -138,6 +153,9 @@ namespace XRL.World.Parts.Skill
                 string designText = "mysterious shapes";
                 if(designNumber ==0){
                     designText = Popup.AskString("What do you depict?", string.Empty, 999);
+                }
+                if(designNumber > 0){
+                    designText = recipes[designNumber-1].FormDescription;
                 }
 
 

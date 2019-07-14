@@ -209,20 +209,20 @@
     </object>
 
 
-    <object Name="Lime FlowerBush" Inherits="FlowerBush">
+    <object Name="chartreuse FlowerBush" Inherits="FlowerBush">
         <part Name="Render" DisplayName="&amp;Ggrave tulip bush" RenderString="12" ColorString="&amp;g" Tile="Terrain/sw_lahbloom.bmp" TileColor="&amp;Y" DetailColor="G" Occluding="false"></part>
-        <part Name="Harvestable" OnSuccess="Lime Flower" RipeColor="&amp;Y" RipeTileColor="&amp;Y" RipeDetailColor="G" UnripeColor="&amp;Y" UnripeTileColor="&amp;Y" UnripeDetailColor="G"></part>
+        <part Name="Harvestable" OnSuccess="chartreuse Flower" RipeColor="&amp;Y" RipeTileColor="&amp;Y" RipeDetailColor="G" UnripeColor="&amp;Y" UnripeTileColor="&amp;Y" UnripeDetailColor="G"></part>
         <part Name="Description" Short="A flowering bush."></part>
         <tag Name="DynamicObjectsTable:Flowerfields_FarmablePlants"></tag>
         <tag Name="DynamicObjectsTable:Flowerfields_Plants"></tag>
     </object> 
-    <object Name="Lime Flower" Inherits="DyeFlower">
+    <object Name="chartreuse Flower" Inherits="DyeFlower">
        <part Name="Render" DisplayName="&amp;Ggrave tulip" ColorString="&amp;Y" DetailColor="G" RenderString="'" Tile="Items/sw_lah_petals.bmp" />
         <part Name="Description" Short="Simple petals on the end of a stem." /> 
-        <part Name="PreservableItem" Result="Lime Dye Phial" Number="1" />
+        <part Name="PreservableItem" Result="chartreuse Dye Phial" Number="1" />
       </object>
-    <object Name="Lime Dye Phial" Inherits="Phial">
-        <part Name="LiquidVolume" InitialLiquid="limedye-1000" StartVolume="1d3" />
+    <object Name="chartreuse Dye Phial" Inherits="Phial">
+        <part Name="LiquidVolume" InitialLiquid="chartreusedye-1000" StartVolume="1d3" />
     </object>
 
 
@@ -342,5 +342,10 @@
       </object>
     <object Name="Turquoise Dye Phial" Inherits="Phial">
         <part Name="LiquidVolume" InitialLiquid="turquoisedye-1000" StartVolume="1d3" />
+    </object>
+
+
+    <object Name="Creature" Load="Merge">
+      <part Name="acegiak_PaintingTeacher" />
     </object>
 </objects>
