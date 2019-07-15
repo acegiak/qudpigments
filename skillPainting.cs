@@ -150,18 +150,20 @@ namespace XRL.World.Parts.Skill
                     return;
                 }
 
-                string designText = "mysterious shapes";
-                if(designNumber ==0){
-                    designText = Popup.AskString("What do you depict?", string.Empty, 999);
-                }
-                if(designNumber > 0){
-                    designText = recipes[designNumber-1].FormDescription;
-                }
-
 
 
                 acegiak_ModHandPainted painting = new acegiak_ModHandPainted();
-                    painting.Engraving = designText;
+
+                painting.Engraving = "mysterious shapes";
+
+                if(designNumber ==0){
+                    painting.Engraving = Popup.AskString("What do you depict?", string.Empty, 999);
+                }
+                if(designNumber > 0){
+                    painting.Engraving = recipes[designNumber-1].FormDescription;
+                    painting.Faction = recipes[designNumber-1].FormFaction;
+                }
+
                     painting.BaseColour = BaseColour;
                     painting.DetailColour = DetailColour;
                 if(paintingpart != null){
@@ -206,7 +208,7 @@ namespace XRL.World.Parts.Skill
                 if(Object.pBrain != null && Object.pBrain.GetFeeling(Owner)<50){
                     Object.pBrain.AdjustFeeling(Owner,-10);
                     if(Owner.IsPlayer()){
-                        IPart.AddPlayerMessage(Object.The+Object.DisplayNameOnly+" doesn't want to be painted!");
+                        Popup.Show(Object.The+Object.DisplayNameOnly+" doesn't want to be painted!");
                     }
                     if(Object.MakeSave("Agility", 20, Owner, null, "Painting")){
                         return false;

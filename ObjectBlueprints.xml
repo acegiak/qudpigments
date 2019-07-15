@@ -223,6 +223,7 @@
         <part Name="Description" Short="A spherical mycelial skeleton faintly exhuding gentle green." /> 
         <part Name="LightSource" Lit="true" Radius="2" />
         <part Name="PreservableItem" Result="Chartreuse Dye Phial" Number="1" />
+        
       </object>
     <object Name="Chartreuse Dye Phial" Inherits="Phial">
         <part Name="LiquidVolume" InitialLiquid="chartreusedye-1000" StartVolume="1d3" />

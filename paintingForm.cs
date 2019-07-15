@@ -10,6 +10,8 @@ namespace Qud.API
 	{
 		public string FormName;
         public string FormDescription;
+		public string FormFaction;
+		
 
 		public override void Reveal()
 		{

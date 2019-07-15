@@ -15,6 +15,7 @@ namespace XRL.World.Parts
         public string BaseColour;
         public string DetailColour;
         public string With;
+		public string Faction;
 
         public int? BodyPartId;
 
@@ -114,6 +115,22 @@ namespace XRL.World.Parts
                 }
             }
 			return str+"&"+BaseColour+"p&"+DetailColour+"a&"+BaseColour+"i&"+DetailColour+"n&"+BaseColour+"t&"+DetailColour+"e&"+BaseColour+"d with " + Engraving +(With!=null?", depicted in "+With:"") +".&y";
+		}
+
+
+		public override bool Apply(GameObject Object)
+		{
+			if(this.Faction != null){
+				XRLCore.Core.Game.PlayerReputation.modify(this.Faction, 10);
+			}
+			return true;
+		}
+
+		public override void Remove(GameObject Object)
+		{	
+			if(this.Faction != null){
+				XRLCore.Core.Game.PlayerReputation.modify(this.Faction, -10);
+			}
 		}
 
 	}

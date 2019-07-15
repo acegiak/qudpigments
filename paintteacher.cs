@@ -2,6 +2,8 @@ using System;
 using XRL.Core;
 using XRL.UI;
 using Qud.API;
+using XRL.Language;
+using XRL.Rules;
 
 namespace XRL.World.Parts
 {
@@ -34,6 +36,18 @@ namespace XRL.World.Parts
 
         public void TeachPainting(GameObject who){
             acegiak_PaintingRecipe recipe = new acegiak_PaintingRecipe("children","kiddos, so many wee ones");
+			if(ParentObject.pBrain != null){
+				recipe.FormFaction = ParentObject.pBrain.GetPrimaryFaction();
+				if(Stat.Rnd2.NextDouble()<0.5f){
+					recipe.FormName = ParentObject.DisplayNameOnly+"'s warpaint";
+				}else{
+					if(Factions.FactionList[ParentObject.pBrain.GetPrimaryFaction()].FormatWithArticle){
+						recipe.FormName = "warpaint of "+Factions.FactionList[ParentObject.pBrain.GetPrimaryFaction()].getFormattedName();
+					}else{
+						recipe.FormName = Grammar.Adjectify(Factions.FactionList[ParentObject.pBrain.GetPrimaryFaction()].getFormattedName())+" warpaint";
+					}
+				}
+			}
             recipe.Reveal();
         }
 
