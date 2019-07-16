@@ -4,6 +4,9 @@ using XRL.UI;
 using Qud.API;
 using XRL.Language;
 using XRL.Rules;
+using XRL.Liquids;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace XRL.World.Parts
 {
@@ -36,7 +39,7 @@ namespace XRL.World.Parts
 		}
 
         public void TeachPainting(GameObject who){
-            acegiak_PaintingRecipe recipe = new acegiak_PaintingRecipe("children","kiddos, so many wee ones");
+            acegiak_PaintingRecipe recipe = new acegiak_PaintingRecipe("children","");
 			if(ParentObject.pBrain != null){
 				recipe.FormFaction = ParentObject.pBrain.GetPrimaryFaction();
 				if(Stat.Rnd2.NextDouble()<0.5f){
@@ -48,7 +51,6 @@ namespace XRL.World.Parts
 						recipe.FormName = Grammar.Adjectify(Factions.FactionList[ParentObject.pBrain.GetPrimaryFaction()].getFormattedName())+" warpaint";
 					}
 				}
-				recipe.text = "Painting Style: "+recipe.FormName + "\n" + recipe.FormDescription;
 
 				if(Stat.Rnd2.NextDouble()<0.5f){
 					recipe.BaseColor = acegiak_LiquidDye.ColorNames.Keys.ToList().GetRandomElement();
@@ -70,8 +72,15 @@ namespace XRL.World.Parts
 					});
 				}
 
+				recipe.FormDescription += depictions.GetRandomElement();
+
 				if(Stat.Rnd2.NextDouble()<0.5f){
-					recipe.PartType = ParentObject.GetPart<Body>()._Body.GetParts().GetRandomElement().Type;
+					recipe.FormDescription += " and "+depictions.GetRandomElement();
+				}
+
+
+				if(Stat.Rnd2.NextDouble()<0.5f){
+					recipe.PartType = ParentObject.GetPart<Body>()._Body.GetParts().Where(p=>!p.Extrinsic && !p.Abstract).GetRandomElement().Type;
 					if(Stat.Rnd2.NextDouble()<0.5f){
 						recipe.FormDescription = recipe.PartType+" painted with "+recipe.FormDescription;
 					}else{
@@ -79,8 +88,8 @@ namespace XRL.World.Parts
 					}
 				}
 				
-
 			}
+			recipe.text = "Painting Style: "+recipe.FormName + "\n" + recipe.FormDescription;
             recipe.Reveal();
         }
 

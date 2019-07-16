@@ -7,6 +7,7 @@ using XRL.Liquids;
 using System.Linq;
 using System.Text;
 using Qud.API;
+using XRL.World.Parts.Effects;
 
 namespace XRL.World.Parts.Skill
 {
@@ -37,6 +38,9 @@ namespace XRL.World.Parts.Skill
             //choose colour
             if(Artist.IsPlayer()){
 
+
+                // CHOOSE BODY PART
+                
                 List<string> ChoiceList = new List<string>();
                 List<char> HotkeyList = new List<char>();
                 char ch = 'a';
@@ -67,6 +71,11 @@ namespace XRL.World.Parts.Skill
 
                 }
 
+
+
+                // CHOOSE DESIGN
+
+
                 ChoiceList = new List<string>();
                 HotkeyList = new List<char>();
                 ChoiceList.Add("Custom design.");
@@ -80,10 +89,12 @@ namespace XRL.World.Parts.Skill
                 foreach(JournalObservation observation in JournalAPI.GetObservations(null)){
                     if(observation is acegiak_PaintingRecipe){
                         acegiak_PaintingRecipe recipe = observation as acegiak_PaintingRecipe;
-                        recipes.Add(recipe);
-                        ChoiceList.Add(recipe.FormName);
-                        HotkeyList.Add(ch);
-                        ch = (char)(ch + 1);
+                        if(recipe.PartType == null || (paintingpart != null && recipe.PartType == paintingpart.Type)){
+                            recipes.Add(recipe);
+                            ChoiceList.Add(recipe.FormName);
+                            HotkeyList.Add(ch);
+                            ch = (char)(ch + 1);
+                        }
                     }
                 }
                 string BaseColour = "";
@@ -93,6 +104,10 @@ namespace XRL.World.Parts.Skill
                 int designNumber = Popup.ShowOptionList(string.Empty, ChoiceList.ToArray(), HotkeyList.ToArray(), 0, "Choose a design.", 60,  false,  true);
 
 
+
+
+                // CHOOSE BASE COLOR
+
                 Inventory part2 = Artist.GetPart<Inventory>();
                 List<XRL.World.GameObject> ObjectChoices = new List<XRL.World.GameObject>();
                 ChoiceList = new List<string>();
@@ -101,15 +116,21 @@ namespace XRL.World.Parts.Skill
                 part2.ForeachObject(delegate(XRL.World.GameObject GO)
                 {
                     if(GO != null && GO.GetPart<LiquidVolume>() != null &&  GO.GetPart<LiquidVolume>().GetPrimaryLiquid() != null && GO.GetPart<LiquidVolume>().GetPrimaryLiquid().Name != "water"){
-                        ObjectChoices.Add(GO);
-                        HotkeyList.Add(ch);
-                        ChoiceList.Add(GO.DisplayName);
-                        ch = (char)(ch + 1);
+                        if(designNumber <= 0 || GO.GetPart<LiquidVolume>().GetPrimaryLiquidColor() == recipes[designNumber-1].BaseColor){
+                            ObjectChoices.Add(GO);
+                            HotkeyList.Add(ch);
+                            ChoiceList.Add(GO.DisplayName);
+                            ch = (char)(ch + 1);
+                        }
                     }
                 });
                 if (ObjectChoices.Count == 0)
                 {
-                    Popup.Show("You have nothing to paint with.");
+                    if(designNumber > 0){
+                        Popup.Show("You have no "+acegiak_LiquidDye.ColorNames[recipes[designNumber-1].BaseColor]+" pigments.");
+                    }else{
+                        Popup.Show("You have nothing to paint with.");
+                    }
                     return;
                 }
                 int baseColor = Popup.ShowOptionList(string.Empty, ChoiceList.ToArray(), HotkeyList.ToArray(), 0, "Choose your base colour.", 60,  false, true);
@@ -129,6 +150,34 @@ namespace XRL.World.Parts.Skill
                 }
 
 
+
+
+                //CHOOSE DETAIL COLOR
+
+                List<XRL.World.GameObject> ObjectChoices2 = new List<XRL.World.GameObject>();
+                ChoiceList = new List<string>();
+                HotkeyList = new List<char>();
+                ch = 'a';
+                part2.ForeachObject(delegate(XRL.World.GameObject GO)
+                {
+                    if(GO != null && GO.GetPart<LiquidVolume>() != null &&  GO.GetPart<LiquidVolume>().GetPrimaryLiquid() != null && GO.GetPart<LiquidVolume>().GetPrimaryLiquid().Name != "water"){
+                        if(designNumber <= 0 || GO.GetPart<LiquidVolume>().GetPrimaryLiquidColor() == recipes[designNumber-1].DetailColor){
+                            ObjectChoices2.Add(GO);
+                            HotkeyList.Add(ch);
+                            ChoiceList.Add(GO.DisplayName);
+                            ch = (char)(ch + 1);
+                        }
+                    }
+                });
+                if (ObjectChoices2.Count == 0)
+                {
+                    if(designNumber > 0){
+                        Popup.Show("You have no "+acegiak_LiquidDye.ColorNames[recipes[designNumber-1].DetailColor]+" pigments.");
+                    }else{
+                        Popup.Show("You have nothing to paint with.");
+                    }
+                    return;
+                }
                 int detailColor = Popup.ShowOptionList(string.Empty, ChoiceList.ToArray(), HotkeyList.ToArray(), 0, "Choose your detail colour.", 60,  false, true);
                 if (detailColor >= 0)
                 {
@@ -151,6 +200,8 @@ namespace XRL.World.Parts.Skill
                 }
 
 
+
+                // DO THE PAINTING
 
                 acegiak_ModHandPainted painting = new acegiak_ModHandPainted();
 
@@ -179,8 +230,8 @@ namespace XRL.World.Parts.Skill
                     ObjectChoices[baseColor].GetPart<LiquidVolume>().UseDrams(1);
                 }
                 if(detailColor >=0){
-                    ObjectChoices[detailColor].GetPart<LiquidVolume>().GetPrimaryLiquid().PouredOn(new LiquidVolume(ObjectChoices[detailColor].GetPart<LiquidVolume>().GetPrimaryLiquid().ID,1),Canvas);
-                    ObjectChoices[detailColor].GetPart<LiquidVolume>().UseDrams(1);
+                    ObjectChoices2[detailColor].GetPart<LiquidVolume>().GetPrimaryLiquid().PouredOn(new LiquidVolume(ObjectChoices[detailColor].GetPart<LiquidVolume>().GetPrimaryLiquid().ID,1),Canvas);
+                    ObjectChoices2[detailColor].GetPart<LiquidVolume>().UseDrams(1);
                 }
                 Canvas.ApplyEffect(painting);
 

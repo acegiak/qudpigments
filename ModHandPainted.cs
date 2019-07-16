@@ -6,7 +6,7 @@ using XRL.Core;
 using XRL.Rules;
 using System.Linq;
 
-namespace XRL.World.Parts
+namespace XRL.World.Parts.Effects
 {
 	[Serializable]
 	public class acegiak_ModHandPainted : Effect
