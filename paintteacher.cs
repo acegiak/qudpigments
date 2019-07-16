@@ -16,6 +16,7 @@ namespace XRL.World.Parts
 
 		private bool bOnlyAllowIfLiked = true;
 
+
 		public override bool SameAs(IPart p)
 		{
 			return false;
@@ -47,6 +48,38 @@ namespace XRL.World.Parts
 						recipe.FormName = Grammar.Adjectify(Factions.FactionList[ParentObject.pBrain.GetPrimaryFaction()].getFormattedName())+" warpaint";
 					}
 				}
+				recipe.text = "Painting Style: "+recipe.FormName + "\n" + recipe.FormDescription;
+
+				if(Stat.Rnd2.NextDouble()<0.5f){
+					recipe.BaseColor = acegiak_LiquidDye.ColorNames.Keys.ToList().GetRandomElement();
+					recipe.FormDescription += acegiak_LiquidDye.ColorNames[recipe.BaseColor]+" ";
+				}
+				if(Stat.Rnd2.NextDouble()<0.5f){
+					recipe.DetailColor = acegiak_LiquidDye.ColorNames.Keys.ToList().GetRandomElement();
+					if(recipe.BaseColor != null){
+						recipe.FormDescription += "and ";
+					}
+					recipe.FormDescription += acegiak_LiquidDye.ColorNames[recipe.DetailColor]+" ";
+				}
+
+				List<string> depictions = new List<string>(acegiak_PaintingRecipe.DesignElements);
+				if(ParentObject.GetPart<Inventory>() != null){
+					ParentObject.GetPart<Inventory>().ForeachObject(delegate(XRL.World.GameObject GO)
+					{
+						depictions.Add(Grammar.Pluralize(GO.DisplayNameOnly));
+					});
+				}
+
+				if(Stat.Rnd2.NextDouble()<0.5f){
+					recipe.PartType = ParentObject.GetPart<Body>()._Body.GetParts().GetRandomElement().Type;
+					if(Stat.Rnd2.NextDouble()<0.5f){
+						recipe.FormDescription = recipe.PartType+" painted with "+recipe.FormDescription;
+					}else{
+						recipe.FormDescription = recipe.FormDescription+" across the "+recipe.PartType;
+					}
+				}
+				
+
 			}
             recipe.Reveal();
         }

@@ -11,7 +11,14 @@ namespace Qud.API
 		public string FormName;
         public string FormDescription;
 		public string FormFaction;
+
+		public string BaseColor;
+
+		public string DetailColor;
+
+		public string PartType;
 		
+		public static string[] DesignElements = new string[7]{"bold lines","scales","spots","shadows","checkers","arrows","hatching"};
 
 		public override void Reveal()
 		{

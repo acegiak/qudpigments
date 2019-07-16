@@ -162,10 +162,11 @@ namespace XRL.World.Parts.Skill
                 if(designNumber > 0){
                     painting.Engraving = recipes[designNumber-1].FormDescription;
                     painting.Faction = recipes[designNumber-1].FormFaction;
+                    painting.DisplayName = recipes[designNumber-1].FormName;
                 }
 
-                    painting.BaseColour = BaseColour;
-                    painting.DetailColour = DetailColour;
+                painting.BaseColour = BaseColour;
+                painting.DetailColour = DetailColour;
                 if(paintingpart != null){
                     painting.BodyPartId = paintingpart.ID;
                 }

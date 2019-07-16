@@ -104,7 +104,6 @@ namespace XRL.World.Parts
 			return base.FireEvent(E);
 		}
 
-
 		public override string GetDetails()
 		{
             string str = "";
@@ -114,7 +113,11 @@ namespace XRL.World.Parts
                     str+= Object.Its+" "+part.Name+" is ";
                 }
             }
-			return str+"&"+BaseColour+"p&"+DetailColour+"a&"+BaseColour+"i&"+DetailColour+"n&"+BaseColour+"t&"+DetailColour+"e&"+BaseColour+"d with " + Engraving +(With!=null?", depicted in "+With:"") +".&y";
+			str = str+"&"+BaseColour+"p&"+DetailColour+"a&"+BaseColour+"i&"+DetailColour+"n&"+BaseColour+"t&"+DetailColour+"e&"+BaseColour+"d with " + Engraving +(With!=null?", depicted in "+With:"") +".&y";
+			if(this.Faction != null){
+				str += "\n+10 Rep with "+this.Faction;
+			}
+			return str;
 		}
 
 
