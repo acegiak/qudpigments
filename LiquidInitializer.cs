@@ -22,7 +22,11 @@ namespace XRL.World.Parts
             Debug.Log("Initializing Pigment Liquids.");
             
             for(int i=0;i < acegiak_LiquidDye.ColorNames.Keys.ToList().Count;i++){
+                Debug.Log("dye count: "+i.ToString());
+
                 acegiak_LiquidDye dye = new acegiak_LiquidDye(acegiak_LiquidDye.ColorNames.Keys.ToList()[i]);
+                Debug.Log("dye ID: "+acegiak_LiquidDye.BaseID+i);
+
                 dye.ID = Convert.ToByte(acegiak_LiquidDye.BaseID+i);
                 //dye.Name = dye.GetName(null);
                 Debug.Log((dye.ID).ToString()+": "+acegiak_LiquidDye.ColorNames.Values.ToList()[i]+"dye "+ acegiak_LiquidDye.ColorNames.Keys.ToList()[i]);

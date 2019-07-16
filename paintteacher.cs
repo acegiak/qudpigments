@@ -20,6 +20,7 @@ namespace XRL.World.Parts
 		private bool bOnlyAllowIfLiked = true;
 
 
+
 		public override bool SameAs(IPart p)
 		{
 			return false;
@@ -40,8 +41,12 @@ namespace XRL.World.Parts
 
         public void TeachPainting(GameObject who){
             acegiak_PaintingRecipe recipe = new acegiak_PaintingRecipe("children","");
-			if(ParentObject.pBrain != null){
-				recipe.FormFaction = ParentObject.pBrain.GetPrimaryFaction();
+				if(ParentObject.pBrain != null){
+					recipe.FormFaction = ParentObject.pBrain.GetPrimaryFaction();
+				}
+				//TYPES: warpaint, memorypaint, craftspaint, huntspaint, 
+
+
 				if(Stat.Rnd2.NextDouble()<0.5f){
 					recipe.FormName = ParentObject.DisplayNameOnly+"'s warpaint";
 				}else{
@@ -68,7 +73,7 @@ namespace XRL.World.Parts
 				if(ParentObject.GetPart<Inventory>() != null){
 					ParentObject.GetPart<Inventory>().ForeachObject(delegate(XRL.World.GameObject GO)
 					{
-						depictions.Add(Grammar.Pluralize(GO.DisplayNameOnly));
+						depictions.Add(Grammar.Pluralize(Grammar.GetRandomMeaningfulWord(GO.DisplayNameOnly)));
 					});
 				}
 
@@ -88,7 +93,7 @@ namespace XRL.World.Parts
 					}
 				}
 				
-			}
+			
 			recipe.text = "Painting Style: "+recipe.FormName + "\n" + recipe.FormDescription;
             recipe.Reveal();
         }

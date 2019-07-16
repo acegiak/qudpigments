@@ -42,20 +42,23 @@ namespace XRL.World.Parts
 			{
 				return;
 			}
-			GO.RemoveEffect<acegiak_ModHandPainted>();
+			foreach(Effect e in GO.GetEffects("acegiak_ModHandPainted")){
+				if(e is acegiak_ModHandPainted){
+					GO.RemoveEffect(e);
+				}
+			}
             acegiak_ModHandPainted painted = new acegiak_ModHandPainted();
             if(Stat.Rnd2.NextDouble() <0.5f){
                 painted.DetailColour = this.Color;
-				painted.BaseColour = ParentObject.pRender.TileColor.Replace("&","");
+				painted.BaseColour = "y";
             }else{
                 painted.BaseColour = this.Color;
-				painted.DetailColour = ParentObject.pRender.DetailColor;
+				painted.DetailColour = "y";
             }
             painted.DisplayName = "&"+this.Color + "mottled";
             painted.Engraving = "colourful spores";
             painted.Duration = 120;
             GO.ApplyEffect(painted);
-			
 		}
 
 		public override bool FireEvent(Event E)

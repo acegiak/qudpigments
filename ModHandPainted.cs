@@ -19,6 +19,8 @@ namespace XRL.World.Parts.Effects
 
         public int? BodyPartId;
 
+		public Effect SecondaryEffect;
+
 		public acegiak_ModHandPainted()
 		{
             this.DisplayName = "painted";
@@ -82,6 +84,9 @@ namespace XRL.World.Parts.Effects
                 if(BaseColour != null && DetailColour != null && Engraving != null){
 				    str += "&"+BaseColour+"p&"+DetailColour+"a&"+BaseColour+"i&"+DetailColour+"n&"+BaseColour+"t&"+DetailColour+"e&"+BaseColour+"d with " + Engraving +(With!=null?", depicted in "+With:"") +".&y\n";
                 }
+				if(this.SecondaryEffect != null){
+					str+= "\n Grants secondary effect:"+this.SecondaryEffect.GetDescription();
+				}
 				E.SetParameter("Postfix", E.GetStringParameter("Postfix") + str);
 			}
 			else if ((E.ID == "GetDisplayName" || E.ID == "GetShortDisplayName") && (!Object.Understood() || !Object.HasProperName))
@@ -126,6 +131,9 @@ namespace XRL.World.Parts.Effects
 			if(this.Faction != null){
 				XRLCore.Core.Game.PlayerReputation.modify(this.Faction, 10);
 			}
+			if(this.SecondaryEffect != null){
+				Object.ApplyEffect(this.SecondaryEffect);
+			}
 			return true;
 		}
 
@@ -133,6 +141,9 @@ namespace XRL.World.Parts.Effects
 		{	
 			if(this.Faction != null){
 				XRLCore.Core.Game.PlayerReputation.modify(this.Faction, -10);
+			}
+			if(this.SecondaryEffect != null){
+				Object.RemoveEffect(SecondaryEffect);
 			}
 		}
 

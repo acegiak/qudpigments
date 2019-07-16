@@ -35,7 +35,7 @@ namespace XRL.Liquids
             {"w","brown"},
             {"G","chartreuse"},
             {"g","green"},
-            {"b","blue"},
+            {"b","cobalt"},
             {"B","cerulean"},
             {"c","teal"},
             {"C","turquoise"},
