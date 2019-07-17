@@ -73,7 +73,7 @@ namespace XRL.Liquids
 
 		public override string GetName(LiquidVolume Liquid)
 		{
-			return "&"+Color+""+ColorNames[Color]+" dye";
+			return "&"+Color+(Color=="k"?"^K":"")+""+ColorNames[Color]+" dye";
 		}
 
 		public override bool Drank(LiquidVolume Liquid, int Volume, XRL.World.GameObject Target, StringBuilder Message, ref bool ExitInterface)
@@ -85,7 +85,7 @@ namespace XRL.Liquids
 
 		public override string GetSmearedName(LiquidVolume Liquid)
 		{
-			return "&"+Color+""+ColorNames[Color]+" stained";
+			return "&"+Color+(Color=="k"?"^K":"")+""+ColorNames[Color]+" stained";
 		}
 
 		public override void ObjectEnteredCell(LiquidVolume Liquid, XRL.World.GameObject GO)
@@ -104,7 +104,6 @@ namespace XRL.Liquids
 				GO.pRender.TileColor="&"+this.Color;
 				GO.pRender.ColorString = "&"+this.Color;
 				GO.pRender.DetailColor =ToggleCase(this.Color);
-				
 			}
 		}
 
@@ -113,7 +112,7 @@ namespace XRL.Liquids
 			int num = XRLCore.CurrentFrame % 60;
 			if (num > 5 && num < 15)
 			{
-				eRender.ColorString = "&"+Color;
+				eRender.ColorString = "&"+Color+(Color=="k"?"^K":"");
 			}
 			base.RenderSmearPrimary(Liquid, eRender);
 		}
@@ -122,7 +121,7 @@ namespace XRL.Liquids
 		{
 			if (Liquid == null || Liquid.ComponentLiquids[Convert.ToByte(ID)] > 0)
 			{
-				return "&"+Color+""+ColorNames[Color]+"";
+				return "&"+Color+(Color=="k"?"^K":"")+""+ColorNames[Color]+"";
 			}
 			return null;
 		}

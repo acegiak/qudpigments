@@ -49,7 +49,7 @@
     <object Name="Faeries Grave" Inherits="FlowerBush">
         <part Name="Render" DisplayName="&amp;yfaeries grave" RenderString="12" ColorString="&amp;g" Tile="Terrain/sw_lahbloom.bmp" TileColor="&amp;g" DetailColor="y" Occluding="false"></part>
         <part Name="Harvestable" OnSuccess="Ash Flower" RipeColor="&amp;g" RipeTileColor="&amp;g" RipeDetailColor="y" UnripeColor="&amp;g" UnripeTileColor="&amp;g" UnripeDetailColor="G"></part>
-        <part Name="Description" Short="A collection of faerie bone flowers circling the resting place of a forgotten fallen soul."></part>
+        <part Name="Description" Short=""></part>
         <tag Name="DynamicObjectsTable:Flowerfields_FarmablePlants"></tag>
         <tag Name="DynamicObjectsTable:Flowerfields_Plants"></tag>
     </object> 
@@ -238,7 +238,7 @@
     </object> 
     <object Name="Satyrs Bloom" Inherits="DyeFlower">
       <part Name="Render" DisplayName="&amp;gsatyr's bloom" ColorString="&amp;Y" DetailColor="g" RenderString="'" Tile="Items/sw_lah_petals.bmp" />
-      <part Name="Description" Short="A deep green patiently awaits what is to come." /> 
+      <part Name="Description" Short="A deep green shamrock patiently awaits what is to come." /> 
       <part Name="PreservableItem" Result="Green Dye Phial" Number="1" />
       <part Name="acegiak_EffectOnEat" Effect="acegiak_OracularPremonition" Duration="5"></part>
       <part Name="PreparedCookingIngredient" type="precognition" charges="1"></part>

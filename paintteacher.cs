@@ -40,59 +40,12 @@ namespace XRL.World.Parts
 		}
 
         public void TeachPainting(GameObject who){
-            acegiak_PaintingRecipe recipe = new acegiak_PaintingRecipe("children","");
-				if(ParentObject.pBrain != null){
-					recipe.FormFaction = ParentObject.pBrain.GetPrimaryFaction();
-				}
-				//TYPES: warpaint, memorypaint, craftspaint, huntspaint, 
 
-
-				if(Stat.Rnd2.NextDouble()<0.5f){
-					recipe.FormName = ParentObject.DisplayNameOnly+"'s warpaint";
-				}else{
-					if(Factions.FactionList[ParentObject.pBrain.GetPrimaryFaction()].FormatWithArticle){
-						recipe.FormName = "warpaint of "+Factions.FactionList[ParentObject.pBrain.GetPrimaryFaction()].getFormattedName();
-					}else{
-						recipe.FormName = Grammar.Adjectify(Factions.FactionList[ParentObject.pBrain.GetPrimaryFaction()].getFormattedName())+" warpaint";
-					}
-				}
-
-				if(Stat.Rnd2.NextDouble()<0.5f){
-					recipe.BaseColor = acegiak_LiquidDye.ColorNames.Keys.ToList().GetRandomElement();
-					recipe.FormDescription += acegiak_LiquidDye.ColorNames[recipe.BaseColor]+" ";
-				}
-				if(Stat.Rnd2.NextDouble()<0.5f){
-					recipe.DetailColor = acegiak_LiquidDye.ColorNames.Keys.ToList().GetRandomElement();
-					if(recipe.BaseColor != null){
-						recipe.FormDescription += "and ";
-					}
-					recipe.FormDescription += acegiak_LiquidDye.ColorNames[recipe.DetailColor]+" ";
-				}
-
-				List<string> depictions = new List<string>(acegiak_PaintingRecipe.DesignElements);
-				if(ParentObject.GetPart<Inventory>() != null){
-					ParentObject.GetPart<Inventory>().ForeachObject(delegate(XRL.World.GameObject GO)
-					{
-						depictions.Add(Grammar.Pluralize(Grammar.GetRandomMeaningfulWord(GO.DisplayNameOnly)));
-					});
-				}
-
-				recipe.FormDescription += depictions.GetRandomElement();
-
-				if(Stat.Rnd2.NextDouble()<0.5f){
-					recipe.FormDescription += " and "+depictions.GetRandomElement();
-				}
-
-
-				if(Stat.Rnd2.NextDouble()<0.5f){
-					recipe.PartType = ParentObject.GetPart<Body>()._Body.GetParts().Where(p=>!p.Extrinsic && !p.Abstract).GetRandomElement().Type;
-					if(Stat.Rnd2.NextDouble()<0.5f){
-						recipe.FormDescription = recipe.PartType+" painted with "+recipe.FormDescription;
-					}else{
-						recipe.FormDescription = recipe.FormDescription+" across the "+recipe.PartType;
-					}
-				}
-				
+			acegiak_PaintingRecipe recipe = new acegiak_PaintingRecipe("","");
+			recipe.PopulateBase();
+			recipe.PopulateFaction(ParentObject.pBrain.GetPrimaryFaction());
+			recipe.PopulatePerson(ParentObject);
+			recipe.PopulateDescriptions();
 			
 			recipe.text = "Painting Style: "+recipe.FormName + "\n" + recipe.FormDescription;
             recipe.Reveal();

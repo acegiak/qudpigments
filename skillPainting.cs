@@ -116,7 +116,9 @@ namespace XRL.World.Parts.Skill
                 part2.ForeachObject(delegate(XRL.World.GameObject GO)
                 {
                     if(GO != null && GO.GetPart<LiquidVolume>() != null &&  GO.GetPart<LiquidVolume>().GetPrimaryLiquid() != null && GO.GetPart<LiquidVolume>().GetPrimaryLiquid().Name != "water"){
-                        if(designNumber <= 0 || GO.GetPart<LiquidVolume>().GetPrimaryLiquidColor() == recipes[designNumber-1].BaseColor){
+                        if(designNumber <= 0 ||
+                        (recipes[designNumber-1].BaseColor.Length == 1 && GO.GetPart<LiquidVolume>().GetPrimaryLiquidColor() == recipes[designNumber-1].BaseColor) ||
+                        (recipes[designNumber-1].BaseColor.Length > 1 && GO.GetPart<LiquidVolume>().GetPrimaryLiquid().Name == recipes[designNumber-1].BaseColor) ){
                             ObjectChoices.Add(GO);
                             HotkeyList.Add(ch);
                             ChoiceList.Add(GO.DisplayName);
@@ -161,7 +163,9 @@ namespace XRL.World.Parts.Skill
                 part2.ForeachObject(delegate(XRL.World.GameObject GO)
                 {
                     if(GO != null && GO.GetPart<LiquidVolume>() != null &&  GO.GetPart<LiquidVolume>().GetPrimaryLiquid() != null && GO.GetPart<LiquidVolume>().GetPrimaryLiquid().Name != "water"){
-                        if(designNumber <= 0 || GO.GetPart<LiquidVolume>().GetPrimaryLiquidColor() == recipes[designNumber-1].DetailColor){
+                        if(designNumber <= 0 ||
+                        (recipes[designNumber-1].DetailColor.Length == 1 && GO.GetPart<LiquidVolume>().GetPrimaryLiquidColor() == recipes[designNumber-1].DetailColor) ||
+                        (recipes[designNumber-1].DetailColor.Length > 1 && GO.GetPart<LiquidVolume>().GetPrimaryLiquid().Name == recipes[designNumber-1].DetailColor) ){
                             ObjectChoices2.Add(GO);
                             HotkeyList.Add(ch);
                             ChoiceList.Add(GO.DisplayName);
