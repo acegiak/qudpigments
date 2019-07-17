@@ -35,7 +35,6 @@ namespace Qud.API
 		GameObject secondaryFetish;
 
 		public string title;
-
 		
 		public static string[] DesignElements = new string[7]{"bold lines","scales","spots","shadows","checkers","arrows","hatching"};
 
@@ -109,8 +108,12 @@ namespace Qud.API
 		public void PopulateDescriptions(){
 
 			PopulateBuff();
+			if(Stat.Rnd2.NextDouble() <0.5f){
+					title = title+"paint";
+			}else{
+					title = title+"mark";
+			}
 
-			title = title+"paint";
 			if(Factions.FactionList.Keys.ToList().Contains(FormFaction)){
 				if(Factions.FactionList[FormFaction].FormatWithArticle){
 					FormName = title+" of "+Factions.FactionList[FormFaction].getFormattedName();
@@ -214,24 +217,20 @@ namespace Qud.API
 					title = "shields";
 					
 				}
-				if(tag == "Artifacts" || tag == "Books"){
-					title = "whisper";
-					
-				}
-				if(tag == "Energy Cell"){
-					title = "secrets";
+				if(tag == "Artifacts" || tag == "Energy Cell"){
+					title = "sparks";
 					
 				}
 				if(tag == "Tonics" || tag == "Meds"){
-					title = "secrets";
+					title = "tender";
 					
 				}
-				if(tag == "Light Source"){
-					title = "secrets";
+				if(tag == "Light Source" || tag="Feet"){
+					title = "travel";
 					
 				}
-				if(tag == "Trinket"){
-					title = "secrets";
+				if(tag == "Books" || tag == "Trinket" || tag=="Miscelleous"){
+					title = "whisper";
 					
 				}
 				if(tag == "Tools" || tag == "Scrap"){
