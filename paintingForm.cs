@@ -235,7 +235,7 @@ namespace Qud.API
 				}
 				if(tag == "Books" || tag == "Trinket" || tag=="Miscelleous"){
 					title = "whisper";
-					className = "XRL.World.Parts.Effects.acegiak_PaintEffectWhisper";
+					className = "XRL.World.Parts.Effects.acegiak_PaintEffectWhispers";
 
 					
 				}

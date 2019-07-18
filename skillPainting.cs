@@ -89,11 +89,13 @@ namespace XRL.World.Parts.Skill
                 foreach(JournalObservation observation in JournalAPI.GetObservations(null)){
                     if(observation is acegiak_PaintingRecipe){
                         acegiak_PaintingRecipe recipe = observation as acegiak_PaintingRecipe;
-                        if(recipe.PartType == null || (paintingpart != null && recipe.PartType == paintingpart.Type)){
-                            recipes.Add(recipe);
-                            ChoiceList.Add(recipe.FormName);
-                            HotkeyList.Add(ch);
-                            ch = (char)(ch + 1);
+                        if(recipe.revealed){
+                            if(recipe.PartType == null || (paintingpart != null && recipe.PartType == paintingpart.Type)){
+                                recipes.Add(recipe);
+                                ChoiceList.Add(recipe.FormName);
+                                HotkeyList.Add(ch);
+                                ch = (char)(ch + 1);
+                            }
                         }
                     }
                 }
@@ -116,7 +118,7 @@ namespace XRL.World.Parts.Skill
                 part2.ForeachObject(delegate(XRL.World.GameObject GO)
                 {
                     if(GO != null && GO.GetPart<LiquidVolume>() != null &&  GO.GetPart<LiquidVolume>().GetPrimaryLiquid() != null && GO.GetPart<LiquidVolume>().GetPrimaryLiquid().Name != "water"){
-                        if(designNumber <= 0 ||
+                        if(designNumber <= 0 ||recipes[designNumber-1].BaseColor == null ||
                         (recipes[designNumber-1].BaseColor.Length == 1 && GO.GetPart<LiquidVolume>().GetPrimaryLiquidColor() == recipes[designNumber-1].BaseColor) ||
                         (recipes[designNumber-1].BaseColor.Length > 1 && GO.GetPart<LiquidVolume>().GetPrimaryLiquid().Name == recipes[designNumber-1].BaseColor) ){
                             ObjectChoices.Add(GO);
@@ -163,7 +165,7 @@ namespace XRL.World.Parts.Skill
                 part2.ForeachObject(delegate(XRL.World.GameObject GO)
                 {
                     if(GO != null && GO.GetPart<LiquidVolume>() != null &&  GO.GetPart<LiquidVolume>().GetPrimaryLiquid() != null && GO.GetPart<LiquidVolume>().GetPrimaryLiquid().Name != "water"){
-                        if(designNumber <= 0 ||
+                        if(designNumber <= 0 ||recipes[designNumber-1].DetailColor == null ||
                         (recipes[designNumber-1].DetailColor.Length == 1 && GO.GetPart<LiquidVolume>().GetPrimaryLiquidColor() == recipes[designNumber-1].DetailColor) ||
                         (recipes[designNumber-1].DetailColor.Length > 1 && GO.GetPart<LiquidVolume>().GetPrimaryLiquid().Name == recipes[designNumber-1].DetailColor) ){
                             ObjectChoices2.Add(GO);
@@ -209,7 +211,10 @@ namespace XRL.World.Parts.Skill
 
                 acegiak_ModHandPainted painting = new acegiak_ModHandPainted();
                 if(designNumber > 0 && recipes[designNumber-1].className != null){
-                    painting = (acegiak_ModHandPainted)Activator.CreateInstance(null, recipes[designNumber-1].className ).Unwrap();
+                    Type t = typeof(acegiak_ModHandPainted);
+
+                    painting = Activator.CreateInstance(Type.GetType(recipes[designNumber-1].className)) as acegiak_ModHandPainted;
+                    // painting = (acegiak_ModHandPainted)Activator.CreateInstance(null, recipes[designNumber-1].className ).Unwrap();
                 }
 
                 painting.Engraving = "mysterious shapes";

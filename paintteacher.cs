@@ -42,6 +42,9 @@ namespace XRL.World.Parts
 		}
 
         public acegiak_PaintingRecipe GetPaintingRecipe(){
+			if(ParentObject.IsPlayer()){
+				return null;
+			}
 			if(this.myRecipe != null){
 				return this.myRecipe;
 			}
@@ -62,7 +65,7 @@ namespace XRL.World.Parts
 
 			if(E.ID == "ShowConversationChoices" ){
 				if(XRLCore.Core.Game.Player.Body.GetPart<acegiak_CustomsPainting>()!= null ){
-					if(!this.GetPaintingRecipe().revealed){
+					if(this.GetPaintingRecipe() != null && !this.GetPaintingRecipe().revealed){
 					
 					
 					if(E.GetParameter<ConversationNode>("CurrentNode") != null && E.GetParameter<ConversationNode>("CurrentNode") is WaterRitualNode){
