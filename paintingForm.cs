@@ -35,6 +35,8 @@ namespace Qud.API
 		GameObject secondaryFetish;
 
 		public string title;
+
+		public string secondaryEffect;
 		
 		public static string[] DesignElements = new string[7]{"bold lines","scales","spots","shadows","checkers","arrows","hatching"};
 
@@ -202,7 +204,7 @@ namespace Qud.API
 				//IPart.AddPlayerMessage(tag);
 				title = tag;
 				if(tag == "Food"){
-					title = "hunger";
+					title = "cooks";
 					
 				}
 				if(tag == "Melee Weapon" || tag == "Grenades"){
@@ -225,8 +227,8 @@ namespace Qud.API
 					title = "tender";
 					
 				}
-				if(tag == "Light Source" || tag="Feet"){
-					title = "travel";
+				if(tag == "Light Source" || tag=="Feet" || tag == "Water Container"){
+					title = "wander";
 					
 				}
 				if(tag == "Books" || tag == "Trinket" || tag=="Miscelleous"){
