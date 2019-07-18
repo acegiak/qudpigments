@@ -208,10 +208,13 @@ namespace XRL.World.Parts.Skill
                 // DO THE PAINTING
 
                 acegiak_ModHandPainted painting = new acegiak_ModHandPainted();
+                if(designNumber > 0 && recipes[designNumber-1].className != null){
+                    painting = (acegiak_ModHandPainted)Activator.CreateInstance(null, recipes[designNumber-1].className ).Unwrap();
+                }
 
                 painting.Engraving = "mysterious shapes";
 
-                if(designNumber ==0){
+                if(designNumber ==0) {
                     painting.Engraving = Popup.AskString("What do you depict?", string.Empty, 999);
                 }
                 if(designNumber > 0){

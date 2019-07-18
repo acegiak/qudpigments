@@ -37,6 +37,8 @@ namespace Qud.API
 		public string title;
 
 		public string secondaryEffect;
+
+		public string className;
 		
 		public static string[] DesignElements = new string[7]{"bold lines","scales","spots","shadows","checkers","arrows","hatching"};
 
@@ -221,7 +223,7 @@ namespace Qud.API
 				}
 				if(tag == "Artifacts" || tag == "Energy Cell"){
 					title = "sparks";
-					
+					className = "XRL.World.Parts.Effects.acegiak_PaintEffectSpark";
 				}
 				if(tag == "Tonics" || tag == "Meds"){
 					title = "tender";
@@ -233,11 +235,13 @@ namespace Qud.API
 				}
 				if(tag == "Books" || tag == "Trinket" || tag=="Miscelleous"){
 					title = "whisper";
+					className = "XRL.World.Parts.Effects.acegiak_PaintEffectWhisper";
+
 					
 				}
 				if(tag == "Tools" || tag == "Scrap"){
 					title = "crafts";
-					
+					className = "XRL.World.Parts.Effects.acegiak_PaintEffectSpark";
 				}
 				if(tag == "Trade Goods" || tag == "Water Container"){
 					title = "water";
