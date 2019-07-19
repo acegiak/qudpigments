@@ -14,6 +14,8 @@ namespace XRL.World.Parts.Skill
 	[Serializable]
 	internal class acegiak_CustomsPainting : BaseSkill
 	{
+
+        public static List<acegiak_PaintingRecipe> Recipes = new List<acegiak_PaintingRecipe>();
 		public acegiak_CustomsPainting()
 		{
 			DisplayName = "acegiak_CustomsPainting";
@@ -39,11 +41,49 @@ namespace XRL.World.Parts.Skill
             if(Artist.IsPlayer()){
 
 
-                // CHOOSE BODY PART
-                
+
+
+                // CHOOSE DESIGN
+
+
                 List<string> ChoiceList = new List<string>();
                 List<char> HotkeyList = new List<char>();
                 char ch = 'a';
+                ChoiceList.Add("Custom design.");
+                HotkeyList.Add(ch);
+                ch = (char)(ch + 1);
+
+                List<acegiak_PaintingRecipe> recipes = new List<acegiak_PaintingRecipe>();
+
+
+                foreach(acegiak_PaintingRecipe observation in Recipes){
+                    if(observation is acegiak_PaintingRecipe){
+                        acegiak_PaintingRecipe recipe = observation as acegiak_PaintingRecipe;
+                        if(recipe.revealed){
+                                recipes.Add(recipe);
+                                ChoiceList.Add(recipe.FormName+": \n"+recipe.FormDescription+"\n");
+                                HotkeyList.Add(ch);
+                                ch = (char)(ch + 1);
+                        }
+                    }
+                }
+                string BaseColour = "";
+                string DetailColour = "";
+                List<string> chosenStuffs = new List<string>();
+
+                int designNumber = Popup.ShowOptionList(string.Empty, ChoiceList.ToArray(), HotkeyList.ToArray(), 0, "Choose a design.", 60,  false,  true);
+                if(designNumber < 0 ){
+                    return;
+                }
+
+
+
+
+                // CHOOSE BODY PART
+                
+                ChoiceList = new List<string>();
+                HotkeyList = new List<char>();
+                ch = 'a';
 
                 BodyPart paintingpart = null;
 
@@ -53,15 +93,17 @@ namespace XRL.World.Parts.Skill
                     foreach(BodyPart part in Canvas.GetPart<Body>()._Body.GetParts())
                     {
                         if(!part.Abstract && !part.Extrinsic){
+                            if(designNumber<=0 || recipes[designNumber-1].PartType == null ||part.Type == recipes[designNumber-1].PartType){
                             parts.Add(part);
                             HotkeyList.Add(ch);
                             ChoiceList.Add(part.Name);
                             ch = (char)(ch + 1);
+                            }
                         }
                     }
                     if (parts.Count == 0)
                     {
-                        Popup.Show("They don't have any body parts??");
+                        Popup.Show("They don't have the body part required for this pattern.");
                         return;
                     }
                     int partChoice = Popup.ShowOptionList(string.Empty, ChoiceList.ToArray(), HotkeyList.ToArray(), 0, "Which part of "+Canvas.the+Canvas.DisplayNameOnly+" will you paint?", 60,  false, true);
@@ -70,41 +112,6 @@ namespace XRL.World.Parts.Skill
                     }
 
                 }
-
-
-
-                // CHOOSE DESIGN
-
-
-                ChoiceList = new List<string>();
-                HotkeyList = new List<char>();
-                ChoiceList.Add("Custom design.");
-                ch = 'a';
-                HotkeyList.Add(ch);
-                ch = (char)(ch + 1);
-
-                List<acegiak_PaintingRecipe> recipes = new List<acegiak_PaintingRecipe>();
-
-
-                foreach(JournalObservation observation in JournalAPI.GetObservations(null)){
-                    if(observation is acegiak_PaintingRecipe){
-                        acegiak_PaintingRecipe recipe = observation as acegiak_PaintingRecipe;
-                        if(recipe.revealed){
-                            if(recipe.PartType == null || (paintingpart != null && recipe.PartType == paintingpart.Type)){
-                                recipes.Add(recipe);
-                                ChoiceList.Add(recipe.FormName);
-                                HotkeyList.Add(ch);
-                                ch = (char)(ch + 1);
-                            }
-                        }
-                    }
-                }
-                string BaseColour = "";
-                string DetailColour = "";
-                List<string> chosenStuffs = new List<string>();
-
-                int designNumber = Popup.ShowOptionList(string.Empty, ChoiceList.ToArray(), HotkeyList.ToArray(), 0, "Choose a design.", 60,  false,  true);
-
 
 
 
@@ -286,6 +293,13 @@ namespace XRL.World.Parts.Skill
                 
                 Paint(Owner,Owner);
 			}
+            // if (E.ID == "AIGetOffensiveMutationList")
+			// {
+			// 	List<AICommandList> list = (List<AICommandList>)E.GetParameter("List");
+			// 	ActivatedAbilities activatedAbilities = ParentObject.GetPart("ActivatedAbilities") as ActivatedAbilities;
+			// 	ActivatedAbilityEntry activatedAbilityEntry = activatedAbilities.AbilityByGuid[ActivatedAbilityID];
+			//     list.Add(new AICommandList("CommandPaint", 1));
+			// }
 			return base.FireEvent(E);
 		}
 

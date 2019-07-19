@@ -11,12 +11,12 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using HistoryKit;
-
+using XRL.World.Parts.Skill;
 
 namespace Qud.API
 {
 	[Serializable]
-	public class acegiak_PaintingRecipe: JournalObservation
+	public class acegiak_PaintingRecipe
 	{
 		public string FormName;
         public string FormDescription;
@@ -39,11 +39,17 @@ namespace Qud.API
 		public string secondaryEffect;
 
 		public string className;
+
+		public string text;
+
+		public string secretid;
+
+		public bool revealed = false;
 		
 		[NonSerialized]
 		public static string[] DesignElements = new string[7]{"bold lines","scales","spots","shadows","checkers","arrows","hatching"};
 
-		public override void Reveal()
+		public void Reveal()
 		{
 			if (!this.revealed)
 			{
@@ -54,21 +60,14 @@ namespace Qud.API
 
         public acegiak_PaintingRecipe(string name,string description)
 		{
-			id = Guid.NewGuid().ToString();
+			string id = Guid.NewGuid().ToString();
             this.FormName = name;
             this.FormDescription = description;
 			
 			this.text = name + ":\n" + description;
 			this.secretid = id;
-			this.attributes.Add("painting");
-			this.attributes.Add(id);
-            this.category = "Painting";
             this.revealed = false;
-            this.time = XRLCore.Core.Game.TimeTicks;
-			JournalAPI.Observations.Add(this);
-
-			JournalAPI.Observations.Sort((JournalObservation a, JournalObservation b) => a.time.CompareTo(b.time));
-			
+			acegiak_CustomsPainting.Recipes.Add(this);
         }
 
 

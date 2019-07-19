@@ -47,7 +47,7 @@ namespace XRL.World.Parts
 				return this.myRecipe;
 			}
 			if(this.myRecipeId != null){
-				foreach(JournalObservation observation in JournalAPI.GetObservations(null)){
+				foreach(acegiak_PaintingRecipe observation in acegiak_CustomsPainting.Recipes){
 					if(observation is acegiak_PaintingRecipe && observation.secretid == this.myRecipeId){
 						this.myRecipe = observation as acegiak_PaintingRecipe;
 						return this.myRecipe;
@@ -94,7 +94,7 @@ namespace XRL.World.Parts
 									Popup.Show("You do not have enough reputation.");
 									return false;
 								}
-								this.GetPaintingRecipe().Reveal();
+								this.GetPaintingRecipe().revealed = true;
 								//Popup.Show("You learned to paint: "+this.GetPaintingRecipe().FormName);
 								XRLCore.Core.Game.PlayerReputation.modify(Factions.FactionList[ParentObject.pBrain.GetPrimaryFaction()].Name, -50,false);
 
