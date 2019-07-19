@@ -15,12 +15,10 @@ namespace XRL.World.Parts
 	[Serializable]
 	public class acegiak_PaintingTeacher : IPart
 	{
-		public string useFactionForFeelingFloor;
 
-		public bool pettableIfPositiveFeeling;
+		private string myRecipeId;
 
-		private bool bOnlyAllowIfLiked = true;
-
+		[NonSerialized]
 		private acegiak_PaintingRecipe myRecipe;
 
 		public override bool SameAs(IPart p)
@@ -48,6 +46,14 @@ namespace XRL.World.Parts
 			if(this.myRecipe != null){
 				return this.myRecipe;
 			}
+			if(this.myRecipeId != null){
+				foreach(JournalObservation observation in JournalAPI.GetObservations(null)){
+					if(observation is acegiak_PaintingRecipe && observation.secretid == this.myRecipeId){
+						this.myRecipe = observation as acegiak_PaintingRecipe;
+						return this.myRecipe;
+					}
+				}
+			}
 
 			acegiak_PaintingRecipe recipe = new acegiak_PaintingRecipe("","");
 			recipe.PopulateBase();
@@ -57,6 +63,7 @@ namespace XRL.World.Parts
 			
 			recipe.text = "Painting Style: "+recipe.FormName + "\n" + recipe.FormDescription;
             this.myRecipe = recipe;
+			this.myRecipeId = myRecipe.secretid;
 			return this.myRecipe;
         }
 

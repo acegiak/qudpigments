@@ -40,6 +40,7 @@ namespace Qud.API
 
 		public string className;
 		
+		[NonSerialized]
 		public static string[] DesignElements = new string[7]{"bold lines","scales","spots","shadows","checkers","arrows","hatching"};
 
 		public override void Reveal()
