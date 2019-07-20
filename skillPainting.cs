@@ -15,13 +15,11 @@ namespace XRL.World.Parts.Skill
 	internal class acegiak_CustomsPainting : BaseSkill
 	{
 
-        public static List<acegiak_PaintingRecipe> Recipes = new List<acegiak_PaintingRecipe>();
+        public List<acegiak_PaintingRecipe> Recipes = new List<acegiak_PaintingRecipe>();
 		public acegiak_CustomsPainting()
 		{
 			DisplayName = "acegiak_CustomsPainting";
-            if(ParentObject.IsPlayer()){
-                 Recipes = new List<acegiak_PaintingRecipe>();
-            }
+            
 		}
 
 		public override bool AllowStaticRegistration()

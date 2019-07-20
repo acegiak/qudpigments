@@ -47,7 +47,7 @@ namespace XRL.World.Parts
 				return this.myRecipe;
 			}
 			if(this.myRecipeId != null){
-				foreach(acegiak_PaintingRecipe observation in acegiak_CustomsPainting.Recipes){
+				foreach(acegiak_PaintingRecipe observation in XRLCore.Core.Game.Player.Body.GetPart<acegiak_CustomsPainting>().Recipes){
 					if(observation is acegiak_PaintingRecipe && observation.secretid == this.myRecipeId){
 						this.myRecipe = observation as acegiak_PaintingRecipe;
 						return this.myRecipe;

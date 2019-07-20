@@ -41,7 +41,7 @@ namespace XRL.World.Parts.Effects
 				string text = E.GetStringParameter("Text");
 				if(text.Contains("You read ")){
 
-					if(Stat.Roll("1d20") + ParentObject.StatMod("Intelligence")>18){
+					if(Object.IsPlayer() && Stat.Roll("1d20") + Object.StatMod("Intelligence")>18){
                     	JournalAPI.RevealRandomSecret();
 					}
 				}

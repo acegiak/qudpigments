@@ -82,7 +82,9 @@ namespace Qud.API
 			this.text = name + ":\n" + description;
 			this.secretid = id;
             this.revealed = false;
-			acegiak_CustomsPainting.Recipes.Add(this);
+			if(XRLCore.Core.Game.Player.Body.GetPart<acegiak_CustomsPainting>() != null){
+				XRLCore.Core.Game.Player.Body.GetPart<acegiak_CustomsPainting>().Recipes.Add(this);
+			}
         }
 
 
@@ -214,15 +216,15 @@ namespace Qud.API
 			return tags;
 		}
 
-
+		[NonSerialized]
 		public List<acegiak_bufftag> bufftags = new List<acegiak_bufftag>{
 			new acegiak_bufftag("Food","cooks"),
 			new acegiak_bufftag("Melee Weapon,Genades","war"),
-			new acegiak_bufftag("Missile Weapon,Ammo","hunts"),
-			new acegiak_bufftag("Armor,Shield","shields"),
+			new acegiak_bufftag("Missile Weapon,Ammo","hunts","XRL.World.Parts.Effects.acegiak_PaintEffectSharpEye"),
+			new acegiak_bufftag("Armor,Shield","shields","XRL.World.Parts.Effects.acegiak_PaintEffectToughSkin"),
 			new acegiak_bufftag("Artifacts,Entergy Cell","sparks","XRL.World.Parts.Effects.acegiak_PaintEffectSpark"),
-			new acegiak_bufftag("Tonics,Meds","tender"),
-			new acegiak_bufftag("Light Source,Feet,Water Container","wander"),
+			new acegiak_bufftag("Tonics,Meds","tender","XRL.World.Parts.Effects.acegiak_PaintEffectRegen"),
+			new acegiak_bufftag("Light Source,Feet,Water Container","wander","XRL.World.Parts.Effects.acegiak_PaintEffectLessThirst"),
 			new acegiak_bufftag("Books,Trinket,Miscellaneous","whisper","XRL.World.Parts.Effects.acegiak_PaintEffectWhispers"),
 			new acegiak_bufftag("Tools,Scrap","crafts","XRL.World.Parts.Effects.acegiak_PaintEffectSpark"),
 			new acegiak_bufftag("Trade Goods,Water Container","water"),
