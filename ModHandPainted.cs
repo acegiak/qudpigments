@@ -73,7 +73,7 @@ namespace XRL.World.Parts.Effects
 			{
 
                 string str = "\n";
-                if(this.BodyPartId != null){
+                if(this.BodyPartId != null && Object.GetPart<Body>() != null){
                     BodyPart part = Object.GetPart<Body>()._Body.GetPartByID(BodyPartId.Value);
                     if(part != null){
                         str+= "&C"+Object.Its+" "+part.Name+" is ";

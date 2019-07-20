@@ -17,25 +17,35 @@ namespace XRL.World.Parts.Effects
 		{
 
 		}
+		public override void Register(GameObject Object)
+		{
+			Object.RegisterEffectEvent(this, "AccomplishmentAdded");
+			base.Register(Object);
+		}
 
-		
+		public override void Unregister(GameObject Object)
+		{
+			Object.UnregisterEffectEvent(this, "AccomplishmentAdded");
+			base.Unregister(Object);
+		}
 
 		public override string GetDetails()
 		{
-			return base.GetDetails()+"\nGrants strange insights into the meanings under words.";
+			return base.GetDetails()+"\nGrants strange insights into the meanings within words.";
 		}
 
         public override bool FireEvent(Event E){
-            if (E.ID == "InvCommandRead")
+            if (E.ID == "AccomplishmentAdded")
 			{
-                GameObject o = E.GetGameObjectParameter("Object");
-                if(o == null){
-                    Popup.Show("What are you reading??");
-                }
-				if(o.GetPart<MarkovBook>() != null && !XRLCore.Core.Game.HasStringGameState("AlreadyRead_" + o.GetPart<MarkovBook>().BookSeed)){
-                    JournalAPI.RevealRandomSecret();
 
-                }
+				string text = E.GetStringParameter("Text");
+				if(text.Contains("You read ")){
+
+					if(Stat.Roll("1d20") + ParentObject.StatMod("Intelligence")>18){
+                    	JournalAPI.RevealRandomSecret();
+					}
+				}
+
 				return true;
 			}
 

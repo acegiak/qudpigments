@@ -19,6 +19,9 @@ namespace XRL.World.Parts.Skill
 		public acegiak_CustomsPainting()
 		{
 			DisplayName = "acegiak_CustomsPainting";
+            if(ParentObject.IsPlayer()){
+                 Recipes = new List<acegiak_PaintingRecipe>();
+            }
 		}
 
 		public override bool AllowStaticRegistration()
@@ -216,6 +219,25 @@ namespace XRL.World.Parts.Skill
 
                 // DO THE PAINTING
 
+                if(paintingpart != null){
+                    List<Effect> list = new List<Effect>();
+                    foreach (Effect effect in Canvas.Effects)
+                    {
+                        list.Add(effect);
+                    }
+                    foreach(Effect e in list){
+                        if(e is acegiak_ModHandPainted){
+                            int? bpid = ((acegiak_ModHandPainted)e).BodyPartId;
+                            if(bpid != null && Canvas.GetPart<Body>() != null){
+                                if(
+                                Canvas.GetPart<Body>()._Body.GetPartByID(bpid.Value) == paintingpart){
+                                    Canvas.RemoveEffect(e);
+                                }
+                            }
+                        }
+                    }
+                }
+
                 acegiak_ModHandPainted painting = new acegiak_ModHandPainted();
                 if(designNumber > 0 && recipes[designNumber-1].className != null){
                     Type t = typeof(acegiak_ModHandPainted);
@@ -249,7 +271,7 @@ namespace XRL.World.Parts.Skill
                     ObjectChoices[baseColor].GetPart<LiquidVolume>().UseDrams(1);
                 }
                 if(detailColor >=0){
-                    ObjectChoices2[detailColor].GetPart<LiquidVolume>().GetPrimaryLiquid().PouredOn(new LiquidVolume(ObjectChoices[detailColor].GetPart<LiquidVolume>().GetPrimaryLiquid().ID,1),Canvas);
+                    ObjectChoices2[detailColor].GetPart<LiquidVolume>().GetPrimaryLiquid().PouredOn(new LiquidVolume(ObjectChoices2[detailColor].GetPart<LiquidVolume>().GetPrimaryLiquid().ID,1),Canvas);
                     ObjectChoices2[detailColor].GetPart<LiquidVolume>().UseDrams(1);
                 }
                 Canvas.ApplyEffect(painting);

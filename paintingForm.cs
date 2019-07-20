@@ -15,6 +15,21 @@ using XRL.World.Parts.Skill;
 
 namespace Qud.API
 {
+
+	public class acegiak_bufftag{
+		public List<string> tags;
+		public string title;
+		public string buffclass;
+
+		public acegiak_bufftag(string _tags,string _title, string _buffclass=null){
+			this.tags = _tags.Split(',').ToList();
+			this.title = _title;
+			if(_buffclass != null){
+				this.buffclass = _buffclass;
+			}
+		}
+	}
+
 	[Serializable]
 	public class acegiak_PaintingRecipe
 	{
@@ -199,56 +214,36 @@ namespace Qud.API
 			return tags;
 		}
 
+
+		public List<acegiak_bufftag> bufftags = new List<acegiak_bufftag>{
+			new acegiak_bufftag("Food","cooks"),
+			new acegiak_bufftag("Melee Weapon,Genades","war"),
+			new acegiak_bufftag("Missile Weapon,Ammo","hunts"),
+			new acegiak_bufftag("Armor,Shield","shields"),
+			new acegiak_bufftag("Artifacts,Entergy Cell","sparks","XRL.World.Parts.Effects.acegiak_PaintEffectSpark"),
+			new acegiak_bufftag("Tonics,Meds","tender"),
+			new acegiak_bufftag("Light Source,Feet,Water Container","wander"),
+			new acegiak_bufftag("Books,Trinket,Miscellaneous","whisper","XRL.World.Parts.Effects.acegiak_PaintEffectWhispers"),
+			new acegiak_bufftag("Tools,Scrap","crafts","XRL.World.Parts.Effects.acegiak_PaintEffectSpark"),
+			new acegiak_bufftag("Trade Goods,Water Container","water"),
+			new acegiak_bufftag("Face,Body,Blood","psy","XRL.World.Parts.Effects.acegiak_PaintEffectPsy"),
+			new acegiak_bufftag("Face,Body,Blood","terror","XRL.World.Parts.Effects.acegiak_PaintEffectTerror"),
+			new acegiak_bufftag("Body,Arm,Hand","fist","XRL.World.Parts.Effects.acegiak_PaintEffectPunch"),
+			new acegiak_bufftag("Body,Hand,Face","phase","XRL.World.Parts.Effects.acegiak_PaintEffectPhase")
+		};
+
 		public void PopulateBuff(){
 			List<string> tags = GetTags();
 			tags.ShuffleInPlace();
 			foreach(string tag in tags){
 				//IPart.AddPlayerMessage(tag);
 				title = tag;
-				if(tag == "Food"){
-					title = "cooks";
-					
+				acegiak_bufftag match = bufftags.Where(b=>b.tags.Contains(tag)).OrderBy(b=>Stat.Rnd2.NextDouble()).FirstOrDefault();
+				if(match != null){
+					this.title = match.title;
+					this.className = match.buffclass;
+					return;
 				}
-				if(tag == "Melee Weapon" || tag == "Grenades"){
-					title = "war";
-					
-				}
-				if(tag == "Missile Weapon" || tag == "Ammo"){
-					title = "hunts";
-					
-				}
-				if(tag == "Armor" || tag == "Shield"){
-					title = "shields";
-					
-				}
-				if(tag == "Artifacts" || tag == "Energy Cell"){
-					title = "sparks";
-					className = "XRL.World.Parts.Effects.acegiak_PaintEffectSpark";
-				}
-				if(tag == "Tonics" || tag == "Meds"){
-					title = "tender";
-					
-				}
-				if(tag == "Light Source" || tag=="Feet" || tag == "Water Container"){
-					title = "wander";
-					
-				}
-				if(tag == "Books" || tag == "Trinket" || tag=="Miscelleous"){
-					title = "whisper";
-					className = "XRL.World.Parts.Effects.acegiak_PaintEffectWhispers";
-
-					
-				}
-				if(tag == "Tools" || tag == "Scrap"){
-					title = "crafts";
-					className = "XRL.World.Parts.Effects.acegiak_PaintEffectSpark";
-				}
-				if(tag == "Trade Goods" || tag == "Water Container"){
-					title = "water";
-					
-				}
-				
-
 
 			}
 		}
