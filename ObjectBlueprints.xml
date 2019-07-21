@@ -34,7 +34,7 @@
 
 
     <object Name="Grave Tulip Bulb" Inherits="FlowerBush">
-        <part Name="Render" DisplayName="&amp;Kgrave tulip bulb" RenderString="12" ColorString="&amp;g" Tile="Terrain/sw_lahbloom.bmp" TileColor="&amp;g" DetailColor="K" Occluding="false"></part>
+        <part Name="Render" DisplayName="&amp;Kgrave tulip bulb" RenderString="12" ColorString="&amp;g" Tile="Creatures/sw_flower.bmp" TileColor="&amp;g" DetailColor="K" Occluding="false"></part>
         <part Name="Harvestable" OnSuccess="Grave Tulip" RipeColor="&amp;g" RipeTileColor="&amp;g" RipeDetailColor="K" UnripeColor="&amp;g" UnripeTileColor="&amp;g" UnripeDetailColor="G"></part>
         <part Name="Description" Short="A fat, tepid bulb heaves the earth, sprouting heavy charcoal blooms from it's form."></part>
 
@@ -51,7 +51,7 @@
 
 
     <object Name="Faeries Grave" Inherits="FlowerBush">
-        <part Name="Render" DisplayName="&amp;yfaeries grave" RenderString="12" ColorString="&amp;g" Tile="Terrain/sw_lahbloom.bmp" TileColor="&amp;g" DetailColor="y" Occluding="false"></part>
+        <part Name="Render" DisplayName="&amp;yfaeries grave" RenderString="12" ColorString="&amp;g" Tile="Assets_Content_Textures_Items_sw_necklace.bmp" TileColor="&amp;g" DetailColor="y" Occluding="false"></part>
         <part Name="Harvestable" OnSuccess="Ash Flower" RipeColor="&amp;g" RipeTileColor="&amp;g" RipeDetailColor="y" UnripeColor="&amp;g" UnripeTileColor="&amp;g" UnripeDetailColor="G"></part>
         <part Name="Description" Short=""></part>
     </object> 
@@ -76,15 +76,16 @@
 
 
 
-    <object Name="White FlowerBush" Inherits="FlowerBush">
-        <part Name="Render" DisplayName="&amp;Ygrave tulip bush" RenderString="12" ColorString="&amp;g" Tile="Terrain/sw_lahbloom.bmp" TileColor="&amp;g" DetailColor="Y" Occluding="false"></part>
-        <part Name="Harvestable" OnSuccess="White Flower" RipeColor="&amp;g" RipeTileColor="&amp;g" RipeDetailColor="Y" UnripeColor="&amp;g" UnripeTileColor="&amp;g" UnripeDetailColor="G"></part>
-        <part Name="Description" Short="A flowering bush."></part>
+    <object Name="Pristine Opheliad Cluster" Inherits="FlowerBush">
+        <part Name="Render" DisplayName="&amp;Ypristine opheliad cluster" RenderString="12" ColorString="&amp;g" Tile="creatures/sw_weeds1.bmp" TileColor="&amp;g" DetailColor="Y" Occluding="true"></part>
+        <part Name="Harvestable" OnSuccess="Pristine Opheliad" RipeColor="&amp;g" RipeTileColor="&amp;g" RipeDetailColor="Y" UnripeColor="&amp;g" UnripeTileColor="&amp;g" UnripeDetailColor="G"></part>
+        <part Name="Description" Short="A collection of white velveteen cups emerging from a stand of thick green stems."></part>
     </object> 
-    <object Name="White Flower" Inherits="DyeFlower">
-       <part Name="Render" DisplayName="&amp;Ygrave tulip" ColorString="&amp;g" DetailColor="Y" RenderString="'" Tile="Items/sw_lah_petals.bmp" />
-        <part Name="Description" Short="Simple petals on the end of a stem." /> 
+    <object Name="Pristine Opheliad" Inherits="DyeFlower">
+       <part Name="Render" DisplayName="&amp;Ypristine opheliad" ColorString="&amp;g" DetailColor="Y" RenderString="'" Tile="Items/sw_lah_petals.bmp" />
+        <part Name="Description" Short="A proud golden stamen is cupped by velveteen white petals, waiting to be inscribed with memories of the dead." /> 
         <part Name="PreservableItem" Result="White Dye Phial" Number="1" />
+        <part Name="acegiak_Opheliad"></part>
       </object>
     <object Name="White Dye Phial" Inherits="Phial">
         <part Name="LiquidVolume" InitialLiquid="whitedye-1000" StartVolume="1d3" />
@@ -94,8 +95,8 @@
 
 
     <object Name="Cursing Pea Vine" Inherits="FlowerBush">
-        <part Name="Render" DisplayName="&amp;rgrave tulip bush" RenderString="12" ColorString="&amp;g" Tile="Terrain/sw_lahbloom.bmp" TileColor="&amp;g" DetailColor="r" Occluding="true"></part>
-        <part Name="Harvestable" OnSuccess="Cursing Pea" RipeColor="&amp;g" RipeTileColor="&amp;g" RipeDetailColor="r" UnripeColor="&amp;g" UnripeTileColor="&amp;g" UnripeDetailColor="G"></part>
+        <part Name="Render" DisplayName="&amp;rcursing pea vine" RenderString="12" ColorString="&amp;g" Tile="Assets_Content_Textures_Tiles_sw_watervine1.bmp" TileColor="&amp;g" DetailColor="r" Occluding="true"></part>
+        <part Name="Harvestable" OnSuccess="Cursing Peas" RipeColor="&amp;g" RipeTileColor="&amp;g" RipeDetailColor="r" UnripeColor="&amp;g" UnripeTileColor="&amp;g" UnripeDetailColor="G"></part>
         <part Name="Description" Short="A climbing vine thick with dry pods of poisonous cursing peas."></part>
     </object> 
     <object Name="Cursing Peas" Inherits="DyeFlower">
@@ -111,7 +112,7 @@
 
 
     <object Name="Daughterseye Vine" Inherits="FlowerBush">
-        <part Name="Render" DisplayName="&amp;Rdaughterseye vine" RenderString="12" ColorString="&amp;g" Tile="Terrain/sw_lahbloom.bmp" TileColor="&amp;g" DetailColor="R" Occluding="false"></part>
+        <part Name="Render" DisplayName="&amp;Rdaughterseye vine" RenderString="12" ColorString="&amp;g" Tile="Terrain/sw_fracti1.bmp" TileColor="&amp;g" DetailColor="R" Occluding="false"></part>
         <part Name="Harvestable" OnSuccess="Daughterseye Gown" RipeColor="&amp;g" RipeTileColor="&amp;g" RipeDetailColor="R" UnripeColor="&amp;g" UnripeTileColor="&amp;g" UnripeDetailColor="G"></part>
         <part Name="Description" Short="A creeping vine spreading red and black blooms across the landscape."></part>
     </object> 
@@ -128,7 +129,7 @@
 
 
     <object Name="Golden Mottlebush" Inherits="FlowerBush">
-        <part Name="Render" DisplayName="&amp;Ogolden mottlebush" RenderString="12" ColorString="&amp;g" Tile="Terrain/sw_lahbloom.bmp" TileColor="&amp;g" DetailColor="O" Occluding="true"></part>
+        <part Name="Render" DisplayName="&amp;Ogolden mottlebush" RenderString="12" ColorString="&amp;g" Tile="terrain/sw_fattree2.bmp" TileColor="&amp;g" DetailColor="O" Occluding="true"></part>
         <part Name="Harvestable" OnSuccess="Golden Mottle" RipeColor="&amp;g" RipeTileColor="&amp;g" RipeDetailColor="O" UnripeColor="&amp;g" UnripeTileColor="&amp;g" UnripeDetailColor="G"></part>
         <part Name="Description" Short="A prickled bush coated in powdery buds, ready to paint it's world in joyous gold."></part>
         <part Name="Brain" Hostile="false" Wanders="false" Mobile="false" LivesOnWalls="false" Factions="Fungi-100" />
@@ -152,7 +153,7 @@
 
 
     <object Name="Emberweed Vine" Inherits="FlowerBush">
-        <part Name="Render" DisplayName="&amp;oEmberweed Vine" RenderString="12" ColorString="&amp;g" Tile="Terrain/sw_lahbloom.bmp" TileColor="&amp;g" DetailColor="o" Occluding="false"></part>
+        <part Name="Render" DisplayName="&amp;oEmberweed Vine" RenderString="12" ColorString="&amp;g" Tile="Creatures/sw_qudzu.bmp" TileColor="&amp;g" DetailColor="o" Occluding="false"></part>
         <part Name="Harvestable" OnSuccess="Emberweed" RipeColor="&amp;g" RipeTileColor="&amp;g" RipeDetailColor="o" UnripeColor="&amp;g" UnripeTileColor="&amp;g" UnripeDetailColor="G"></part>
         <part Name="Description" Short="The vine traces it's way across the floor between larger trees and bushes, it's deep cherry gold pulsing as it breathes."></part>
     </object> 
@@ -167,7 +168,7 @@
 
 
     <object Name="Cometweed Cluster" Inherits="FlowerBush">
-        <part Name="Render" DisplayName="&amp;Wcometweed cluster" RenderString="12" ColorString="&amp;g" Tile="Terrain/sw_lahbloom.bmp" TileColor="&amp;g" DetailColor="W" Occluding="false"></part>
+        <part Name="Render" DisplayName="&amp;Wcometweed cluster" RenderString="12" ColorString="&amp;g" Tile="Creatures/sw_qudzu.bmp" TileColor="&amp;g" DetailColor="W" Occluding="false"></part>
         <part Name="Harvestable" OnSuccess="Cometweed" RipeColor="&amp;g" RipeTileColor="&amp;g" RipeDetailColor="W" UnripeColor="&amp;g" UnripeTileColor="&amp;g" UnripeDetailColor="G"></part>
         <part Name="Description" Short="A sprouting clump of comet weed, golden flickering tails swaying in the gentle harmony."></part>
     </object> 
@@ -182,14 +183,16 @@
 
 
     <object Name="Rusty Opheliad Outcrop" Inherits="FlowerBush">
-        <part Name="Render" DisplayName="&amp;wRusty Opheliad Outcrop" RenderString="12" ColorString="&amp;g" Tile="Terrain/sw_lahbloom.bmp" TileColor="&amp;g" DetailColor="w" Occluding="true"></part>
+        <part Name="Render" DisplayName="&amp;wRusty Opheliad Outcrop" RenderString="12" ColorString="&amp;g" Tile="creatures/sw_weeds1.bmp" TileColor="&amp;g" DetailColor="w" Occluding="true"></part>
         <part Name="Harvestable" OnSuccess="Rusty Opheliad" RipeColor="&amp;g" RipeTileColor="&amp;g" RipeDetailColor="w" UnripeColor="&amp;g" UnripeTileColor="&amp;g" UnripeDetailColor="G"></part>
         <part Name="Description" Short="A collection of stained satin cones, their stamen hidden by their wilting petals."></part>
     </object> 
     <object Name="Rusty Opheliad" Inherits="DyeFlower">
        <part Name="Render" DisplayName="&amp;wrusty opheliad" ColorString="&amp;g" DetailColor="w" RenderString="'" Tile="Items/sw_lah_petals.bmp" />
-        <part Name="Description" Short="A stained satin cone, it's petals marked with some unknown sorrow." /> 
+        <part Name="Description" Short="A stained satin cone, its petals marked with some old sorrow." /> 
         <part Name="PreservableItem" Result="Brown Dye Phial" Number="1" />
+        <part Name="acegiak_Opheliad" autowrite="true"></part>
+
       </object>
     <object Name="Brown Dye Phial" Inherits="Phial">
         <part Name="LiquidVolume" InitialLiquid="browndye-1000" StartVolume="1d3" />
@@ -197,7 +200,7 @@
 
 
     <object Name="Exclusion Cap Ring" Inherits="FlowerBush">
-        <part Name="Render" DisplayName="&amp;Gexclusion cap ring" RenderString="12" ColorString="&amp;g" Tile="Terrain/sw_lahbloom.bmp" TileColor="&amp;Y" DetailColor="G" Occluding="false"></part>
+        <part Name="Render" DisplayName="&amp;Gexclusion cap ring" RenderString="12" ColorString="&amp;g" Tile="Assets_Content_Textures_Items_sw_necklace.bmp" TileColor="&amp;Y" DetailColor="G" Occluding="false"></part>
         <part Name="Harvestable" OnSuccess="chartreuse Flower" RipeColor="&amp;Y" RipeTileColor="&amp;Y" RipeDetailColor="G" UnripeColor="&amp;Y" UnripeTileColor="&amp;Y" UnripeDetailColor="G"></part>
         <part Name="Description" Short="An attempted circle of exclusion caps, carving out their territory in the dirt."></part>
         <part Name="LightSource" Lit="true" Radius="3" />
@@ -214,7 +217,7 @@
 
 
     <object Name="Satyrs Bloom Spool" Inherits="FlowerBush">
-        <part Name="Render" DisplayName="&amp;gsatyr's bloom spool" RenderString="12" ColorString="&amp;Y" Tile="Terrain/sw_lahbloom.bmp" TileColor="&amp;Y" DetailColor="g" Occluding="false"></part>
+        <part Name="Render" DisplayName="&amp;gsatyr's bloom spool" RenderString="12" ColorString="&amp;Y" Tile="Assets_Content_Textures_Items_sw_necklace.bmp" TileColor="&amp;Y" DetailColor="g" Occluding="false"></part>
         <part Name="Harvestable" OnSuccess="Satyrs Bloom" RipeColor="&amp;Y" RipeTileColor="&amp;Y" RipeDetailColor="g" UnripeColor="&amp;Y" UnripeTileColor="&amp;Y" UnripeDetailColor="y"></part>
         <part Name="Description" Short="A coil of luscious green locks, waiting to be untangled."></part>
     </object> 
@@ -237,7 +240,7 @@
 
 
     <object Name="Splendid Claw Bush" Inherits="FlowerBush">
-        <part Name="Render" DisplayName="&amp;bsplendid claw bush" RenderString="12" ColorString="&amp;g" Tile="Terrain/sw_lahbloom.bmp" TileColor="&amp;g" DetailColor="b" Occluding="false"></part>
+        <part Name="Render" DisplayName="&amp;bsplendid claw bush" RenderString="12" ColorString="&amp;g" Tile="Creatures/sw_flower.bmp" TileColor="&amp;g" DetailColor="b" Occluding="false"></part>
         <part Name="Harvestable" OnSuccess="Splendid Claw" RipeColor="&amp;g" RipeTileColor="&amp;g" RipeDetailColor="b" UnripeColor="&amp;g" UnripeTileColor="&amp;g" UnripeDetailColor="G"></part>
         <part Name="Description" Short="A timid shrub offering its cobalt bloom for approval."></part>
     </object> 
@@ -258,7 +261,7 @@
 
 
     <object Name="Dewblossom Tree" Inherits="FlowerBush">
-        <part Name="Render" DisplayName="&amp;Bdewblossom tree" RenderString="12" ColorString="&amp;g" Tile="Terrain/sw_lahbloom.bmp" TileColor="&amp;g" DetailColor="B" Occluding="true"></part>
+        <part Name="Render" DisplayName="&amp;Bdewblossom tree" RenderString="12" ColorString="&amp;g" Tile="terrain/sw_fattree1.bmp" TileColor="&amp;g" DetailColor="B" Occluding="true"></part>
         <part Name="Harvestable" OnSuccess="Cerulean Flower" RipeColor="&amp;g" RipeTileColor="&amp;g" RipeDetailColor="B" UnripeColor="&amp;g" UnripeTileColor="&amp;g" UnripeDetailColor="G"></part>
         <part Name="Description" Short="An arid flowering tree that drops bright blue flowers for the thirsty when the heat seeps into the earth."></part>
     </object> 
@@ -274,7 +277,7 @@
 
 
     <object Name="Violet Mottlebush" Inherits="FlowerBush">
-        <part Name="Render" DisplayName="&amp;mviolet mottlebush" RenderString="12" ColorString="&amp;g" Tile="Terrain/sw_lahbloom.bmp" TileColor="&amp;g" DetailColor="m" Occluding="true"></part>
+        <part Name="Render" DisplayName="&amp;mviolet mottlebush" RenderString="12" ColorString="&amp;g" Tile="terrain/sw_fattree2.bmp" TileColor="&amp;g" DetailColor="m" Occluding="true"></part>
         <part Name="Harvestable" OnSuccess="Violet Mottle" RipeColor="&amp;g" RipeTileColor="&amp;g" RipeDetailColor="m" UnripeColor="&amp;g" UnripeTileColor="&amp;g" UnripeDetailColor="G"></part>
         <part Name="Description" Short="A prickled bush coated in powdery buds, ready to paint it's landscape in violent purple."></part>
         <part Name="Brain" Hostile="false" Wanders="false" Mobile="false" LivesOnWalls="false" Factions="Fungi-100" />
@@ -298,7 +301,7 @@
 
 
     <object Name="Adebloom Tree" Inherits="FlowerBush">
-        <part Name="Render" DisplayName="&amp;Madebloom tree" RenderString="12" ColorString="&amp;g" Tile="Terrain/sw_lahbloom.bmp" TileColor="&amp;g" DetailColor="M" Occluding="true"></part>
+        <part Name="Render" DisplayName="&amp;Madebloom tree" RenderString="12" ColorString="&amp;g" Tile="terrain/sw_fattree1.bmp" TileColor="&amp;g" DetailColor="M" Occluding="true"></part>
         <part Name="Harvestable" OnSuccess="Magenta Flower" RipeColor="&amp;g" RipeTileColor="&amp;g" RipeDetailColor="M" UnripeColor="&amp;g" UnripeTileColor="&amp;g" UnripeDetailColor="G"></part>
         <part Name="Description" Short="An arid tree that waits for the seasons. When celebration nears it litters the landscape with vivid pink blossoms."></part>
     </object> 
@@ -314,7 +317,7 @@
 
 
     <object Name="Crow Claw Bush" Inherits="FlowerBush">
-        <part Name="Render" DisplayName="&amp;ccrow claw bush" RenderString="12" ColorString="&amp;g" Tile="Terrain/sw_lahbloom.bmp" TileColor="&amp;g" DetailColor="c" Occluding="true"></part>
+        <part Name="Render" DisplayName="&amp;ccrow claw bush" RenderString="12" ColorString="&amp;g" Tile="Creatures/sw_flower.bmp" TileColor="&amp;g" DetailColor="c" Occluding="true"></part>
         <part Name="Harvestable" OnSuccess="Crow Claw" RipeColor="&amp;g" RipeTileColor="&amp;g" RipeDetailColor="c" UnripeColor="&amp;g" UnripeTileColor="&amp;g" UnripeDetailColor="G"></part>
         <part Name="Description" Short="A feathery bush filled with dozens of crow claw flowers grasping at passers by."></part>
     </object> 
@@ -336,7 +339,7 @@
 
 
     <object Name="Stalkers Lace Outcrop" Inherits="FlowerBush">
-        <part Name="Render" DisplayName="&amp;Cstalker's lace outcrop" RenderString="12" ColorString="&amp;g" Tile="Terrain/sw_lahbloom.bmp" TileColor="&amp;g" DetailColor="C" Occluding="false"></part>
+        <part Name="Render" DisplayName="&amp;Cstalker's lace outcrop" RenderString="12" ColorString="&amp;g" Tile="Assets_Content_Textures_Items_sw_necklace.bmp" TileColor="&amp;g" DetailColor="C" Occluding="false"></part>
         <part Name="Harvestable" OnSuccess="Turquoise Flower" RipeColor="&amp;g" RipeTileColor="&amp;g" RipeDetailColor="C" UnripeColor="&amp;g" UnripeTileColor="&amp;g" UnripeDetailColor="G"></part>
         <part Name="Description" Short="A clump of fungal octagons spreading from some long rotted memory."></part>
         <part Name="LightSource" Lit="true" Radius="2" />

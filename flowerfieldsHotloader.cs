@@ -27,9 +27,13 @@ namespace XRL.World.Parts
 		}
 
         public void AddAFlower(){
-            GameObject GO = GameObjectFactory.Factory.CreateObject(EncountersAPI.GetARandomDescendentOf("FlowerBush"));
+            string flowertype = EncountersAPI.GetARandomDescendentOf("FlowerBush");
             if(ParentObject.CurrentCell != null){
-                ParentObject.CurrentCell.GetEmptyAdjacentCells().GetRandomElement().AddObject(GO);
+                foreach(Cell c in ParentObject.CurrentCell.GetEmptyAdjacentCells(0,3)){
+					if(Stat.Rnd2.NextDouble()<0.05f){
+						c.AddObject(GameObjectFactory.Factory.CreateObject(flowertype));
+					}
+				}
                 //ParentObject.CurrentCell.AddObject(GO);
             }
         }
