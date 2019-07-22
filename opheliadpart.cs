@@ -16,7 +16,7 @@ namespace XRL.World.Parts
 		public override void Register(GameObject Object)
 		{
 			Object.RegisterPartEvent(this, "GetInventoryActions");
-			Object.RegisterPartEvent(this, "InvCommandOpheliadwrite");
+			Object.RegisterPartEvent(this, "InvCommandOpheliadWrite");
 			Object.RegisterPartEvent(this, "GetShortDescription");
 			base.Register(Object);
             if(autowrite){
@@ -29,19 +29,21 @@ namespace XRL.World.Parts
 
 		public override bool FireEvent(Event E)
 		{
+            IPart.AddPlayerMessage(E.ID);
 			if (E.ID == "GetInventoryActions")
 			{
-				//E.GetParameter<EventParameterGetInventoryActions>("Actions").AddAction("OpheliadWrite", 'W', true, "&WW&yrite", "InvCommandOpheliadwrite", 10);
+				E.GetParameter<EventParameterGetInventoryActions>("Actions").AddAction("OpheliadWrite", 'W', false, "&WW&yrite", "InvCommandOpheliadWrite", 10);
 			}
-            if(E.ID == "InvCommandOpheliadwrite"){
-                IPart.AddPlayerMessage("Write a memory");
+            if(E.ID == "InvCommandOpheliadWrite"){
+                //Popup.Show("WHAT");
+                // IPart.AddPlayerMessage("Write a memory");
                 this.writing = Popup.AskString("What do you write?", "A memory of the dead",999);
                 ParentObject.DisplayName = "rusty opheliad";
                 ParentObject.pRender.ColorString = "&g";
                 ParentObject.pRender.DetailColor = "w";
                 ParentObject.GetPart<PreservableItem>().Result = "Brown Dye Phial";
 
-                IPart.AddPlayerMessage("done");
+                // IPart.AddPlayerMessage("done");
             }
             if (E.ID == "GetShortDescription")
 			{
@@ -65,7 +67,7 @@ namespace XRL.World.Parts
                 if(Stat.Rnd2.NextDouble()<0.05f){
                     string before = this.writing.Substring(0,i);
                     string after = this.writing.Substring(Math.Min(i+1,writing.Length));
-                    List<string> degrade = new List<string>{".","-","_",","};
+                    List<string> degrade = new List<string>{".","-","_",",",""};
                     this.writing = before+degrade.GetRandomElement()+after;
                 }
             }
