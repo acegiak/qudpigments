@@ -50,7 +50,7 @@ namespace XRL.World.Parts
             acegiak_ModHandPainted painted = new acegiak_ModHandPainted();
             if(Stat.Rnd2.NextDouble() <0.5f){
                 painted.DetailColour = this.Color;
-				painted.BaseColour = GO.pRender.TileColor.Replace("&","");
+				painted.BaseColour = GO.pRender.GetForegroundColor();
             }else{
                 painted.BaseColour = this.Color;
 				painted.DetailColour = GO.pRender.DetailColor;
