@@ -50,10 +50,10 @@ namespace XRL.World.Parts
             acegiak_ModHandPainted painted = new acegiak_ModHandPainted();
             if(Stat.Rnd2.NextDouble() <0.5f){
                 painted.DetailColour = this.Color;
-				painted.BaseColour = "y";
+				painted.BaseColour = GO.pRender.TileColor.Replace("&","");
             }else{
                 painted.BaseColour = this.Color;
-				painted.DetailColour = "y";
+				painted.DetailColour = GO.pRender.DetailColor;
             }
             painted.DisplayName = "&"+this.Color + "mottled";
             painted.Engraving = "colourful spores";
