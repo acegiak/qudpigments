@@ -30,15 +30,16 @@ namespace XRL.World.Parts
 		public override bool FireEvent(Event E)
 		{
             IPart.AddPlayerMessage(E.ID);
-			if (E.ID == "GetInventoryActions")
+			if (E.ID == "GetInventoryActions" && writing == null)
 			{
 				E.GetParameter<EventParameterGetInventoryActions>("Actions").AddAction("OpheliadWrite", 'W', false, "&WW&yrite", "InvCommandOpheliadWrite", 10);
 			}
-            if(E.ID == "InvCommandOpheliadWrite"){
+            if(E.ID == "InvCommandOpheliadWrite" && writing == null){
                 //Popup.Show("WHAT");
                 // IPart.AddPlayerMessage("Write a memory");
                 this.writing = Popup.AskString("What do you write?", "A memory of the dead",999);
                 ParentObject.DisplayName = "rusty opheliad";
+                ParentObject.GetPart<Description>().Short = "A stained satin cone, its petals marked with some old sorrow.";
                 ParentObject.pRender.ColorString = "&g";
                 ParentObject.pRender.DetailColor = "w";
                 ParentObject.GetPart<PreservableItem>().Result = "Brown Dye Phial";
