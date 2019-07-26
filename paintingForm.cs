@@ -219,7 +219,7 @@ namespace Qud.API
 		[NonSerialized]
 		public List<acegiak_bufftag> bufftags = new List<acegiak_bufftag>{
 			new acegiak_bufftag("Food","cooks"),
-			new acegiak_bufftag("Melee Weapon,Genades","war"),
+			new acegiak_bufftag("Melee Weapon,Genades","war","XRL.World.Parts.Effects.acegiak_PaintEffectCrits"),
 			new acegiak_bufftag("Missile Weapon,Ammo","hunts","XRL.World.Parts.Effects.acegiak_PaintEffectSharpEye"),
 			new acegiak_bufftag("Armor,Shield","shields","XRL.World.Parts.Effects.acegiak_PaintEffectToughSkin"),
 			new acegiak_bufftag("Artifacts,Entergy Cell","sparks","XRL.World.Parts.Effects.acegiak_PaintEffectSpark"),
