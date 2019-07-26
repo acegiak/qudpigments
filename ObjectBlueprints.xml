@@ -12,8 +12,7 @@
 
 
   <object Name="Dye Phial" Inherits="Phial">
-      <tag Name="BaseObject" Value="*noinherit" />
-
+    <tag Name="BaseObject" Value="*noinherit" />
     <part Name="LiquidVolume" StartVolume="1" InitialLiquid="ashdye-1000"/>
     <tag Name="ChooseToPreserve"></tag>
     <part Name="TinkerItem" Bits="05" CanDisassemble="false" CanBuild="true" CanRepair="false"></part>
