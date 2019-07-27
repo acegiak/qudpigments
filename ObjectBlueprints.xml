@@ -225,7 +225,7 @@
 
     <object Name="Exclusion Cap Ring" Inherits="FlowerBush">
         <part Name="Render" DisplayName="&amp;Gexclusion cap ring" RenderString="12" ColorString="&amp;g" Tile="Flowers/exclusioncap_bush.png" TileColor="&amp;Y" DetailColor="G" Occluding="false"></part>
-        <part Name="Harvestable" OnSuccess="chartreuse Flower" RipeColor="&amp;Y" RipeTileColor="&amp;Y" RipeDetailColor="G" UnripeColor="&amp;w" UnripeTileColor="&amp;w" UnripeDetailColor="K"></part>
+        <part Name="Harvestable" OnSuccess="Exclusion Cap" RipeColor="&amp;Y" RipeTileColor="&amp;Y" RipeDetailColor="G" UnripeColor="&amp;w" UnripeTileColor="&amp;w" UnripeDetailColor="K"></part>
         <part Name="Description" Short="An attempted circle of exclusion caps, carving out their territory in the dirt."></part>
         <part Name="LightSource" Lit="true" Radius="3" />
     </object> 
