@@ -74,39 +74,39 @@ namespace XRL.World.Parts
 				if(XRLCore.Core.Game.Player.Body.GetPart<acegiak_CustomsPainting>()!= null ){
 					if(this.GetPaintingRecipe() != null && !this.GetPaintingRecipe().revealed){
 					
-					
-					if(E.GetParameter<ConversationNode>("CurrentNode") != null && E.GetParameter<ConversationNode>("CurrentNode") is WaterRitualNode){
-						WaterRitualNode wrnode = E.GetParameter<ConversationNode>("CurrentNode") as WaterRitualNode;
-						List<ConversationChoice> Choices = E.GetParameter<List<ConversationChoice>>("Choices") as List<ConversationChoice>;
+						
+						if(E.GetParameter<ConversationNode>("CurrentNode") != null && E.GetParameter<ConversationNode>("CurrentNode") is WaterRitualNode){
+							WaterRitualNode wrnode = E.GetParameter<ConversationNode>("CurrentNode") as WaterRitualNode;
+							List<ConversationChoice> Choices = E.GetParameter<List<ConversationChoice>>("Choices") as List<ConversationChoice>;
 
-						if(Choices.Where(b=>b.ID == "LearnPaintingStyle").Count() <= 0){
+							if(Choices.Where(b=>b.ID == "LearnPaintingStyle").Count() <= 0){
 
-							bool canlearn = XRLCore.Core.Game.PlayerReputation.get(ParentObject.pBrain.GetPrimaryFaction()) >50;
+								bool canlearn = XRLCore.Core.Game.PlayerReputation.get(ParentObject.pBrain.GetPrimaryFaction()) >50;
 
-							ConversationChoice conversationChoice = new ConversationChoice();
-							conversationChoice.Text = (canlearn?"&G":"&K")+"Teach me to paint "+this.GetPaintingRecipe().FormName+" [-50 reputation]";
-							conversationChoice.GotoID = "End";
-							conversationChoice.ParentNode = wrnode;
-							conversationChoice.ID = "LearnPaintingStyle";
-							conversationChoice.onAction = delegate()
-							{
-								if(!canlearn){
-									Popup.Show("You do not have enough reputation.");
-									return false;
-								}
-								this.GetPaintingRecipe().revealed = true;
-								Popup.Show("You learned to paint: "+this.GetPaintingRecipe().FormName);
-								XRLCore.Core.Game.PlayerReputation.modify(Factions.FactionList[ParentObject.pBrain.GetPrimaryFaction()].Name, -50,false);
+								ConversationChoice conversationChoice = new ConversationChoice();
+								conversationChoice.Text = (canlearn?"&G":"&K")+"Teach me to paint &y"+this.GetPaintingRecipe().FormName+(canlearn?"&g":"&K")+" ["+(canlearn?"&C":"&r")+"-50"+(canlearn?"&g":"&K")+" reputation]";
+								conversationChoice.GotoID = "End";
+								conversationChoice.ParentNode = wrnode;
+								conversationChoice.ID = "LearnPaintingStyle";
+								conversationChoice.onAction = delegate()
+								{
+									if(!canlearn){
+										Popup.Show("You do not have enough reputation.");
+										return false;
+									}
+									this.GetPaintingRecipe().revealed = true;
+									Popup.Show("You learned to paint: "+this.GetPaintingRecipe().FormName);
+									XRLCore.Core.Game.PlayerReputation.modify(Factions.FactionList[ParentObject.pBrain.GetPrimaryFaction()].Name, -50,false);
 
-								return true;
-							};
-							Choices.Add(conversationChoice);
-							Choices.Sort(new ConversationChoice.Sorter());
-							// wrnode.Choices.Add(conversationChoice);
-							// wrnode.SortEndChoicesToEnd();
-							E.SetParameter("CurrentNode",wrnode);
+									return true;
+								};
+								Choices.Add(conversationChoice);
+								Choices.Sort(new ConversationChoice.Sorter());
+								// wrnode.Choices.Add(conversationChoice);
+								// wrnode.SortEndChoicesToEnd();
+								E.SetParameter("CurrentNode",wrnode);
+							}
 						}
-					}
 					
 					}
 				}
