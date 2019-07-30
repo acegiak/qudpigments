@@ -12,9 +12,10 @@ using XRL.World.Parts.Effects;
 namespace XRL.World.Parts.Skill
 {
 	[Serializable]
-	internal class acegiak_CustomsPainting : BaseSkill
+	public class acegiak_CustomsPainting : BaseSkill
 	{
 
+        [NonSerialized]
         public List<acegiak_PaintingRecipe> Recipes = new List<acegiak_PaintingRecipe>();
 		public acegiak_CustomsPainting()
 		{
@@ -332,5 +333,67 @@ namespace XRL.World.Parts.Skill
 		{
 			return true;
 		}
+
+        		//         [NonSerialized]
+        // public List<StandAbility> abilities = new List<StandAbility>();
+
+        // SaveData is called when the game is ready to save this object, so we override it here.
+        public override void SaveData(SerializationWriter Writer)
+        {
+		
+			// if(DisplayName == null){
+			// 	throw new Exception("The display name for the painting skill is null!");
+			// }
+			if(this.Recipes == null){
+				throw new Exception("The Recipes list is null!");
+			}
+			this.Recipes.RemoveAll(d=>d==null);
+
+            // We have to call base.SaveData to save all normally serialized fields on our class
+            base.SaveData(Writer);
+			
+            // Writing out the number of items in this list lets us know how many items we need to read back in on Load
+            Writer.Write(Recipes.Count);
+            foreach (acegiak_PaintingRecipe recipe in Recipes)
+            {
+				recipe.Save(Writer);
+            }
+
+        }
+
+        // Load data is called when loading the save game, we also need to override this
+        public override void LoadData(SerializationReader Reader)
+        {
+            // Load our normal data
+            base.LoadData(Reader);
+
+
+			this.Recipes = new List<acegiak_PaintingRecipe>();
+
+
+			if(Reader == null){
+				throw new Exception("The Reader is null!");
+			}
+			if(Recipes == null){
+				throw new Exception("The recipes list is null!");
+			}
+
+			if(this == null){
+				throw new Exception("This is null!");
+			}
+
+
+            // Read the number we wrote earlier telling us how many items there were
+            int arraySize = Reader.ReadInt32();
+            for (int i = 0; i < arraySize; i++)
+            {
+               
+                acegiak_PaintingRecipe.Read(Reader,this);
+                // Similar to above, if we had a basic type in our list, we would instead use the Reader.Read function specific to our object type.
+            }
+
+
+        }
+
 	}
 }

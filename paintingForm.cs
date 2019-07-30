@@ -51,8 +51,6 @@ namespace Qud.API
 
 		public string title;
 
-		public string secondaryEffect;
-
 		public string className;
 
 		public string text;
@@ -248,6 +246,37 @@ namespace Qud.API
 				}
 
 			}
+		}
+
+
+		public void Save(SerializationWriter Writer){
+			Writer.Write(FormName);
+			Writer.Write(FormDescription);
+			Writer.Write(FormFaction);
+			Writer.Write(BaseColor);
+			Writer.Write(DetailColor);
+			Writer.Write(PartType);
+			Writer.Write(title);
+			Writer.Write(className);
+			Writer.Write(text);
+			Writer.Write(secretid);
+			Writer.Write(revealed?1:0);
+		}
+
+		public static void Read(SerializationReader Reader, acegiak_CustomsPainting skill){
+			acegiak_PaintingRecipe recipe = new acegiak_PaintingRecipe("","");
+			recipe.FormName = Reader.ReadString();
+			recipe.FormDescription = Reader.ReadString();
+			recipe.FormFaction = Reader.ReadString();
+			recipe.BaseColor = Reader.ReadString();
+			recipe.DetailColor = Reader.ReadString();
+			recipe.PartType = Reader.ReadString();
+			recipe.title = Reader.ReadString();
+			recipe.className = Reader.ReadString();
+			recipe.text = Reader.ReadString();
+			recipe.secretid = Reader.ReadString();
+			recipe.revealed = Reader.ReadInt32() >0;
+			skill.Recipes.Add(recipe);
 		}
 
 	}
