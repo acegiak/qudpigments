@@ -84,7 +84,7 @@ namespace XRL.World.Parts
 								bool canlearn = XRLCore.Core.Game.PlayerReputation.get(ParentObject.pBrain.GetPrimaryFaction()) >50;
 
 								ConversationChoice conversationChoice = new ConversationChoice();
-								conversationChoice.Text = (canlearn?"&G":"&K")+"Teach me to paint &y"+this.GetPaintingRecipe().FormName+(canlearn?"&g":"&K")+" ["+(canlearn?"&C":"&r")+"-50"+(canlearn?"&g":"&K")+" reputation]";
+								conversationChoice.Text = (canlearn?"&G":"&K")+"Teach me to paint &W"+this.GetPaintingRecipe().FormName+(canlearn?"&g":"&K")+" ["+(canlearn?"&C":"&r")+"-50"+(canlearn?"&g":"&K")+" reputation]";
 								conversationChoice.GotoID = "End";
 								conversationChoice.ParentNode = wrnode;
 								conversationChoice.ID = "LearnPaintingStyle";
