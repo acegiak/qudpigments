@@ -57,6 +57,7 @@
     <part Name="Food" Satiation="Snack" Thirst="0" Healing="0" Message="A floral taste, but not a filling meal." />
     <part Name="PreservableItem" Result="Dye Phial" Number="1" />
     <tag Name="ChooseToPreserve"></tag>
+    <part Name="Commerce" Value="3" />
   </object>
 
 
@@ -405,7 +406,7 @@
 
     <object Name="Stalkers Lace Outcrop" Inherits="FlowerBush">
         <part Name="Render" DisplayName="&amp;Cstalker's lace outcrop" RenderString="12" ColorString="&amp;g" Tile="Flowers/stalkerslace_bush.png" TileColor="&amp;g" DetailColor="C" Occluding="false"></part>
-        <part Name="Harvestable" OnSuccess="Turquoise Flower" RipeColor="&amp;g" RipeTileColor="&amp;g" RipeDetailColor="C" UnripeColor="&amp;g" UnripeTileColor="&amp;g" UnripeDetailColor="k"></part>
+        <part Name="Harvestable" OnSuccess="Stalkers Lace" RipeColor="&amp;g" RipeTileColor="&amp;g" RipeDetailColor="C" UnripeColor="&amp;g" UnripeTileColor="&amp;g" UnripeDetailColor="k"></part>
         <part Name="Description" Short="A clump of fungal octagons spreading from some long rotted memory."></part>
         <part Name="LightSource" Lit="true" Radius="2" />
     </object> 

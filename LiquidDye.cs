@@ -207,5 +207,11 @@ namespace XRL.Liquids
             }
             return result;
         }
+
+		public override float GetValuePerDram()
+		{
+			return 5f;
+		}
+
 	}
 }
