@@ -20,7 +20,6 @@
 
   <object Name="FlowerBush" Inherits="Plant">
     <tag Name="BaseObject" Value="*noinherit" />
-    <part Name="Brain" Hostile="false" />
     <part Name="Render" DisplayName="flower bush" RenderString="12" ColorString="&amp;G" Tile="Terrain/sw_lahbloom.bmp" TileColor="&amp;g" DetailColor="w" Occluding="false"></part>
     <part Name="Harvestable" OnSuccess="DyeFlower" OnSuccessAmount="1" StartRipeChance="1:3" RipeColor="&amp;g" RipeTileColor="&amp;g" RipeDetailColor="M" UnripeColor="&amp;g" UnripeTileColor="&amp;g" UnripeDetailColor="G"></part>
     <part Name="Description" Short="A simple bush of colourful blooms."></part>
@@ -47,6 +46,21 @@
     <tag Name="SimpleConversation" Value="&amp;w*the plant gives no indication of understanding*&amp;y" />
     <tag Name="PetResponse" Value="sways gently" />
     <tag Name="Gender" Value="neuter" />
+
+        <stat Name="Strength" sValue="6,1d3,(t-1)d2" />
+        <stat Name="Agility" sValue="6,1d3,(t-1)d2" />
+        <stat Name="Toughness" sValue="14,1d3,(t-1)d2" />
+        <stat Name="Intelligence" sValue="2,1d2,(t-1)d2-1" />
+        <stat Name="Willpower" sValue="0" />
+        <stat Name="Ego" sValue="0" />
+        <part Name="NoKnockdown" />
+        <stat Name="Energy" ShortName="EN" Min="-100000" Max="100000" Value="0" />
+        <stat Name="Speed" ShortName="SP" Min="1" Max="10000" Value="100" />
+        <stat Name="MoveSpeed" ShortName="MS" Min="-200" Max="200" Value="100" />
+        <stat Name="ColdResistance" Value="50" />
+        <stat Name="ElectricResistance" Value="50" />
+        <stat Name="AcidResistance" Value="0" />
+        <stat Name="Level" ShortName="LV" Min="1" Max="10000" Value="1" />
   </object>
   
   <object Name="DyeFlower" Inherits="Snack">
@@ -164,24 +178,7 @@
         <part Name="Description" Short="A prickled bush coated in powdery buds, ready to paint it's world in joyous gold."></part>
 
         <part Name="acegiak_ColorPuff" Color="O" GasBlueprint="GoldenSporeGas"/>
-
-    <stat Name="Strength" sValue="6,1d3,(t-1)d2" />
-    <stat Name="Agility" sValue="6,1d3,(t-1)d2" />
-    <stat Name="Toughness" sValue="14,1d3,(t-1)d2" />
-    <stat Name="Intelligence" sValue="2,1d2,(t-1)d2-1" />
-    <stat Name="Willpower" sValue="0" />
-    <stat Name="Ego" sValue="0" />
-    <part Name="Brain" Hostile="false" HostileWalkRadius="2" Wanders="false" Mobile="false"  Factions="Flowers-100"/>
-    <part Name="NoKnockdown" />
-    <stat Name="Energy" ShortName="EN" Min="-100000" Max="100000" Value="0" />
-    <stat Name="Speed" ShortName="SP" Min="1" Max="10000" Value="100" />
-    <stat Name="MoveSpeed" ShortName="MS" Min="-200" Max="200" Value="100" />
-    <stat Name="ColdResistance" Value="50" />
-    <stat Name="ElectricResistance" Value="50" />
-    <stat Name="AcidResistance" Value="0" />
-    <stat Name="Level" ShortName="LV" Min="1" Max="10000" Value="1" />
-
-
+        <part Name="Brain" Hostile="false" HostileWalkRadius="2" Wanders="false" Mobile="false"  Factions="Flowers-100" />
     </object> 
     <object Name="Golden Mottle" Inherits="DyeFlower">
       <part Name="Render" DisplayName="&amp;Ogolden mottle" ColorString="&amp;g" DetailColor="O" RenderString="'" Tile="Flowers/mottle_close.png" />
@@ -330,23 +327,7 @@
         <part Name="Brain" Hostile="false" Wanders="false" Mobile="false" LivesOnWalls="false" Factions="Fungi-100" />
         <part Name="acegiak_ColorPuff" Color="m" GasBlueprint="VioletSporeGas" />
 
-
-
-        <stat Name="Strength" sValue="6,1d3,(t-1)d2" />
-        <stat Name="Agility" sValue="6,1d3,(t-1)d2" />
-        <stat Name="Toughness" sValue="14,1d3,(t-1)d2" />
-        <stat Name="Intelligence" sValue="2,1d2,(t-1)d2-1" />
-        <stat Name="Willpower" sValue="0" />
-        <stat Name="Ego" sValue="0" />
         <part Name="Brain" Hostile="false" HostileWalkRadius="2" Wanders="false" Mobile="false"  Factions="Flowers-100" />
-        <part Name="NoKnockdown" />
-        <stat Name="Energy" ShortName="EN" Min="-100000" Max="100000" Value="0" />
-        <stat Name="Speed" ShortName="SP" Min="1" Max="10000" Value="100" />
-        <stat Name="MoveSpeed" ShortName="MS" Min="-200" Max="200" Value="100" />
-        <stat Name="ColdResistance" Value="50" />
-        <stat Name="ElectricResistance" Value="50" />
-        <stat Name="AcidResistance" Value="0" />
-        <stat Name="Level" ShortName="LV" Min="1" Max="10000" Value="1" />
 
     </object> 
     <object Name="Violet Mottle" Inherits="DyeFlower">
