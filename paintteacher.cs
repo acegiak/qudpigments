@@ -96,6 +96,8 @@ namespace XRL.World.Parts
 									}
 									this.GetPaintingRecipe().revealed = true;
 									Popup.Show("You learned to paint: "+this.GetPaintingRecipe().FormName);
+									JournalAPI.AddAccomplishment("You learned to paint "+this.GetPaintingRecipe().FormName);
+									JournalAPI.AddObservation(this.GetPaintingRecipe().FormName+":\n"+this.GetPaintingRecipe().FormDescription,this.GetPaintingRecipe().FormName,"Painting Forms",null,null,true);
 									XRLCore.Core.Game.PlayerReputation.modify(Factions.FactionList[ParentObject.pBrain.GetPrimaryFaction()].Name, -50,false);
 
 									return true;
