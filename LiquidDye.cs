@@ -57,6 +57,12 @@ namespace XRL.Liquids
             this.Color = color;
 		}
 
+        public acegiak_LiquidDye(string color,byte ID, string Name)
+			: base(ID,Name)
+		{
+            this.Color = color;
+		}
+
 		public override List<string> GetColors()
 		{
 			return new List<string>(2)
