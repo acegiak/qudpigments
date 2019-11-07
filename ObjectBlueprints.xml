@@ -1,9 +1,5 @@
 <objects>
-  <object Name="DoNotUse_LiquidDyeObjectInitializer" Inherits="Item">
-    <part Name="Render" DisplayName="[Dummy item for Liquid Test]" />
-    <part Name="acegiak_PigmentLiquidInitializer" />
-    <tag Name="ExcludeFromDynamicEncounters" />
-</object>
+
 
 
   <object Name="Dogthorn Tree" Load="Merge">

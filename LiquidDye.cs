@@ -10,12 +10,13 @@ using System.Linq;
 using UnityEngine;
 
 
+
 namespace XRL.Liquids
 {
 	[Serializable]
-	internal class acegiak_LiquidDye : BaseLiquid
+	public class acegiak_LiquidDye : BaseLiquid
 	{
-		public new const int BaseID = 140;
+		public new const string BaseID = "dye";
 
 		public new const string Name = "dye";
 
@@ -52,13 +53,14 @@ namespace XRL.Liquids
 		}
 
         public acegiak_LiquidDye(string color)
-			: base()
+			: base(color+"dye")
 		{
-            this.Color = color;
+			
+            this.Color = ColorNames.FirstOrDefault(x => x.Value == color).Key;
 		}
 
-        public acegiak_LiquidDye(string color,byte ID, string Name)
-			: base(ID,Name)
+        public acegiak_LiquidDye(string color, string Name)
+			: base(Name)
 		{
             this.Color = color;
 		}
@@ -125,7 +127,7 @@ namespace XRL.Liquids
 
 		public override string GetAdjective(LiquidVolume Liquid)
 		{
-			if (Liquid == null || Liquid.ComponentLiquids[Convert.ToByte(ID)] > 0)
+			if (Liquid == null || Liquid.ComponentLiquids[ID] > 0)
 			{
 				return "&"+Color+(Color=="k"?"^K":"")+""+ColorNames[Color]+"";
 			}
@@ -220,4 +222,94 @@ namespace XRL.Liquids
 		}
 
 	}
+
+	[Serializable]
+	[IsLiquid]
+	public class acegiak_CharcoalDye : acegiak_LiquidDye
+	{	public acegiak_CharcoalDye(): base("charcoal"){}	}
+
+	[Serializable]
+	[IsLiquid]
+	public class acegiak_blackDye : acegiak_LiquidDye
+	{	public acegiak_blackDye(): base("black"){}	}
+
+	[Serializable]
+	[IsLiquid]
+	public class acegiak_whiteDye : acegiak_LiquidDye
+	{	public acegiak_whiteDye(): base("white"){}	}
+
+	[Serializable]
+	[IsLiquid]
+	public class acegiak_ashDye : acegiak_LiquidDye
+	{	public acegiak_ashDye(): base("ash"){}	}
+
+	[Serializable]
+	[IsLiquid]
+	public class acegiak_crimsonDye : acegiak_LiquidDye
+	{	public acegiak_crimsonDye(): base("crimson"){}	}
+
+	[Serializable]
+	[IsLiquid]
+	public class acegiak_scarletDye : acegiak_LiquidDye
+	{	public acegiak_scarletDye(): base("scarlet"){}	}
+
+	[Serializable]
+	[IsLiquid]
+	public class acegiak_goldDye : acegiak_LiquidDye
+	{	public acegiak_goldDye(): base("gold"){}	}
+
+	[Serializable]
+	[IsLiquid]
+	public class acegiak_ochreDye : acegiak_LiquidDye
+	{	public acegiak_ochreDye(): base("ochre"){}	}
+
+	[Serializable]
+	[IsLiquid]
+	public class acegiak_yellowDye : acegiak_LiquidDye
+	{	public acegiak_yellowDye(): base("yellow"){}	}
+
+	[Serializable]
+	[IsLiquid]
+	public class acegiak_brownDye : acegiak_LiquidDye
+	{	public acegiak_brownDye(): base("brown"){}	}
+
+	[Serializable]
+	[IsLiquid]
+	public class acegiak_chartreuseDye : acegiak_LiquidDye
+	{	public acegiak_chartreuseDye(): base("chartreuse"){}	}
+
+	[Serializable]
+	[IsLiquid]
+	public class acegiak_mossDye : acegiak_LiquidDye
+	{	public acegiak_mossDye(): base("moss"){}	}
+
+	[Serializable]
+	[IsLiquid]
+	public class acegiak_cobaltDye : acegiak_LiquidDye
+	{	public acegiak_cobaltDye(): base("cobalt"){}	}
+
+	[Serializable]
+	[IsLiquid]
+	public class acegiak_ceruleanDye : acegiak_LiquidDye
+	{	public acegiak_ceruleanDye(): base("cerulean"){}	}
+
+	[Serializable]
+	[IsLiquid]
+	public class acegiak_tealDye : acegiak_LiquidDye
+	{	public acegiak_tealDye(): base("teal"){}	}
+
+	[Serializable]
+	[IsLiquid]
+	public class acegiak_turquoiseDye : acegiak_LiquidDye
+	{	public acegiak_turquoiseDye(): base("turquoise"){}	}
+
+	[Serializable]
+	[IsLiquid]
+	public class acegiak_magentaDye : acegiak_LiquidDye
+	{	public acegiak_magentaDye(): base("magenta"){}	}
+
+	[Serializable]
+	[IsLiquid]
+	public class acegiak_violetDye : acegiak_LiquidDye
+	{	public acegiak_violetDye(): base("violet"){}	}
 }

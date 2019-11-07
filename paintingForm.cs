@@ -133,11 +133,11 @@ namespace Qud.API
 					title = title+"mark";
 			}
 
-			if(Factions.FactionList.Keys.ToList().Contains(FormFaction)){
-				if(Factions.FactionList[FormFaction].FormatWithArticle){
-					FormName = title+" of "+Factions.FactionList[FormFaction].getFormattedName();
+			if(Factions.getIfExists(FormFaction) != null){
+				if(Factions.get(FormFaction).FormatWithArticle){
+					FormName = title+" of "+Factions.get(FormFaction).getFormattedName();
 				}else{
-					FormName = Grammar.Adjectify(Grammar.Pluralize(Factions.FactionList[FormFaction].getFormattedName()))+" "+title;
+					FormName = Grammar.Adjectify(Grammar.Pluralize(Factions.get(FormFaction).getFormattedName()))+" "+title;
 				}
 			}else{
 				if(FormFaction.ToLower().Contains("this")){
