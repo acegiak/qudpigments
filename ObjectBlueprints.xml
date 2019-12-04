@@ -186,7 +186,7 @@
     </object>
 
     <object Name="GoldenSporeGas" Inherits="Gas">
-      <part Name="Render" DisplayName="fungal spores"></part>
+      <part Name="Render" DisplayName="golden pollen"></part>
       <part Name="acegiak_ColorSpores" Color="O"></part>
       <tag Name="Gender" Value="plural" />
     </object>
@@ -336,7 +336,7 @@
     </object>
 
     <object Name="VioletSporeGas" Inherits="Gas">
-      <part Name="Render" DisplayName="fungal spores"></part>
+      <part Name="Render" DisplayName="violet pollen"></part>
       <part Name="acegiak_ColorSpores" Color="m"></part>
       <tag Name="Gender" Value="plural" />
     </object>
