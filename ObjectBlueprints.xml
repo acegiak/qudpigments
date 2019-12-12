@@ -27,7 +27,7 @@
     <tag Name="HeroNamePostfixes" Value="leaf,frond,root,rut,tarch,oak,pine,wort,moss,fern,shrub,bush,wood,vine,bulb,grove,willow,beech,plum,lock,spruce,sprig,bert,boldt,lotze,hold,stumpf" />
     <tag Name="HeroNamePostfixAmount" Value="1" />
     <tag Name="HeroNameHyphenationChance" Value="0" />
-    <part Name="ConversationScript" ConversationID="Plants" />
+    <!-- <part Name="ConversationScript" ConversationID="Plants" /> -->
     <intproperty Name="Bleeds" Value="1" />
     <tag Name="BleedLiquid" Value="sap-1000" />
     <tag Name="BleedColor" Value="&amp;W" />
@@ -39,7 +39,7 @@
     <tag Name="LivePlant" />
     <stag Name="Plank" Value="plank" />
     <stag Name="HardMaterial" Value="wood" />
-    <tag Name="SimpleConversation" Value="&amp;w*the plant gives no indication of understanding*&amp;y" />
+    <!-- <tag Name="SimpleConversation" Value="&amp;w*the plant gives no indication of understanding*&amp;y" /> -->
     <tag Name="PetResponse" Value="sways gently" />
     <tag Name="Gender" Value="neuter" />
 
@@ -67,7 +67,7 @@
     <part Name="Food" Satiation="Snack" Thirst="0" Healing="0" Message="A floral taste, but not a filling meal." />
     <part Name="PreservableItem" Result="Dye Phial" Number="1" />
     <tag Name="ChooseToPreserve"></tag>
-    <part Name="Commerce" Value="3" />
+    <part Name="Commerce" Value="6" />
   </object>
 
 
