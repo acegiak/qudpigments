@@ -18,34 +18,33 @@ namespace XRL.World.Parts.Effects
 
 		public override string GetDetails()
 		{
-			return base.GetDetails()+"\nYou thirst at half rate.";
+			return base.GetDetails()+"\nYou cannot die of thirst.";
 		}
 
 
 
 	    public override void Register(GameObject Object)
 		{
-			Object.RegisterEffectEvent(this, "CalculatingThirst");
+			Object.RegisterEffectEvent(this, "BeforeDie");
 			base.Register(Object);
 		}
 
 		public override void Unregister(GameObject Object)
 		{
-			Object.UnregisterEffectEvent(this, "CalculatingThirst");
+			Object.UnregisterEffectEvent(this, "BeforeDie");
 			base.Unregister(Object);
 		}
 
 
         public override bool FireEvent(Event E)
 		{
-			if (E.ID == "CalculatingThirst")
+			if (E.ID == "BeforeDie")
 			{
-				int num = (int)Math.Ceiling((float)E.GetIntParameter("Amount") * 0.5f);
-				if (num < 1)
-				{
-					num = 1;
+				if (Object.HasStat("Hitpoints") && Object.pPhysics.LastDamagedBy == null)
+						{
+							Object.Statistics["Hitpoints"].Penalty = 0;
+						
 				}
-				E.SetParameter("Amount", num);
 			}
             return base.FireEvent(E);
 		}
@@ -53,4 +52,4 @@ namespace XRL.World.Parts.Effects
 
 
 	}
-	}
+}

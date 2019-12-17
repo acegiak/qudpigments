@@ -216,16 +216,16 @@ namespace Qud.API
 
 		[NonSerialized]
 		public List<acegiak_bufftag> bufftags = new List<acegiak_bufftag>{
-			new acegiak_bufftag("Food","cooks"),
+			new acegiak_bufftag("Food","cooks","XRL.World.Parts.Effects.acegiak_PaintEffectCooking"),
 			new acegiak_bufftag("Melee Weapon,Genades","war","XRL.World.Parts.Effects.acegiak_PaintEffectCrits"),
-			new acegiak_bufftag("Missile Weapon,Ammo","hunts","XRL.World.Parts.Effects.acegiak_PaintEffectGrease"),
+			new acegiak_bufftag("Missile Weapon,Ammo","hunts","XRL.World.Parts.Effects.acegiak_PaintEffectSharpEye"),
 			new acegiak_bufftag("Armor,Shield","shields","XRL.World.Parts.Effects.acegiak_PaintEffectToughSkin"),
 			new acegiak_bufftag("Artifacts,Entergy Cell","sparks","XRL.World.Parts.Effects.acegiak_PaintEffectGrease"),
-			new acegiak_bufftag("Tonics,Meds","tender","XRL.World.Parts.Effects.acegiak_PaintEffectGrease"),
-			new acegiak_bufftag("Light Source,Feet,Water Container","wander","XRL.World.Parts.Effects.acegiak_PaintEffectGrease"),
-			new acegiak_bufftag("Books,Trinket,Miscellaneous","whisper","XRL.World.Parts.Effects.acegiak_PaintEffectGrease"),
+			new acegiak_bufftag("Tonics,Meds","tender","XRL.World.Parts.Effects.acegiak_PaintEffectStaunch"),
+			new acegiak_bufftag("Light Source,Feet,Water Container","wander","XRL.World.Parts.Effects.acegiak_PaintEffectTravel"),
+			new acegiak_bufftag("Books,Trinket,Miscellaneous","whisper","XRL.World.Parts.Effects.acegiak_PaintEffectWhispers"),
 			new acegiak_bufftag("Tools,Scrap","crafts","XRL.World.Parts.Effects.acegiak_PaintEffectGrease"),
-			new acegiak_bufftag("Trade Goods,Water Container","water"),
+			new acegiak_bufftag("Trade Goods,Water Container","water","XRL.World.Parts.Effects.acegiak_PaintEffectLessThirst"),
 			new acegiak_bufftag("Face,Body,Blood","psy","XRL.World.Parts.Effects.acegiak_PaintEffectPsy"),
 			new acegiak_bufftag("Face,Body,Blood","terror","XRL.World.Parts.Effects.acegiak_PaintEffectTerror"),
 			new acegiak_bufftag("Body,Arm,Hand","fist","XRL.World.Parts.Effects.acegiak_PaintEffectPunch"),

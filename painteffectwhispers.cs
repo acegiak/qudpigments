@@ -11,47 +11,30 @@ namespace XRL.World.Parts.Effects
 	[Serializable]
 	public class acegiak_PaintEffectWhispers : acegiak_ModHandPainted
 	{
-
+		int amount =1;
 
 		public acegiak_PaintEffectWhispers():base()
 		{
 
 		}
-		public override void Register(GameObject Object)
-		{
-			Object.RegisterEffectEvent(this, "AccomplishmentAdded");
-			base.Register(Object);
-		}
-
-		public override void Unregister(GameObject Object)
-		{
-			Object.UnregisterEffectEvent(this, "AccomplishmentAdded");
-			base.Unregister(Object);
-		}
-
+		
 		public override string GetDetails()
 		{
-			return base.GetDetails()+"\nGrants strange insights into the meanings within words.";
+			return base.GetDetails()+"\n+1 MA";
 		}
 
-        public override bool FireEvent(Event E){
-            if (E.ID == "AccomplishmentAdded")
-			{
+		public override bool Apply(GameObject Object)
+		{
+			amount = 1;
+			Object.Statistics["MA"].Bonus += amount;
+			return true;
+		}
 
-				string text = E.GetStringParameter("Text");
-				if(text.Contains("You read ")){
-
-					if(Object.IsPlayer() && Stat.Roll("1d20") + Object.StatMod("Intelligence")>18){
-                    	JournalAPI.RevealRandomSecret();
-					}
-				}
-
-				return true;
-			}
-
-            return base.FireEvent(E);
-        }
-
+		public override void Remove(GameObject Object)
+		{
+			Object.Statistics["MA"].Bonus -= amount;
+			amount = 0;
+		}
 		
 
 

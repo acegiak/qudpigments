@@ -16,28 +16,42 @@ namespace XRL.World.Parts.Effects
 
 		public acegiak_PaintEffectSharpEye():base()
 		{
-
 		}
 
 		
 
 		public override string GetDetails()
 		{
-			return base.GetDetails()+"\nYou gain a +2 bonus to your Agility when aiming missile weapons.";
+			return base.GetDetails()+"\nFiring missile weapons costs 10% less energy.";
 		}
 
-        public override bool Apply(GameObject GO){
-        	GO.ApplyStatShift("AV",1);
-            GO.ModIntProperty("MissileWeaponAccuracyBonus", 2,true);
-			return base.Apply(GO);
-        }
+        
 
-        public override void Remove(GameObject GO){
-            GO.ModIntProperty("MissileWeaponAccuracyBonus", -2,true);
-			base.Remove(GO);
+	    public override void Register(GameObject Object)
+		{
+			Object.RegisterEffectEvent(this, "CommandFireMissile");
+			base.Register(Object);
+		}
 
-        }
+		public override void Unregister(GameObject Object)
+		{
+			Object.UnregisterEffectEvent(this, "CommandFireMissile");
+			base.Unregister(Object);
+		}
 
+		public override bool FireEvent(Event E)
+		{
+			if (E.ID == "CommandFireMissile")
+			{
+				float multiplier = 1f;
+				if(E.GetParameter("EnergyMultiplier") != null){
+					multiplier = (float)E.GetParameter("EnergyMultiplier");
+				}
+				multiplier = multiplier * 0.9f;
+				E.SetParameter("EnergyMultiplier",multiplier);
+			}
+			return base.FireEvent(E);
+		}
 		
 
 
