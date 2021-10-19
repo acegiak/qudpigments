@@ -7,7 +7,7 @@ using XRL.Liquids;
 using System.Linq;
 using System.Text;
 using Qud.API;
-using XRL.World.Parts.Effects;
+using XRL.World.Effects;
 
 namespace XRL.World.Parts.Skill
 {
@@ -266,11 +266,11 @@ namespace XRL.World.Parts.Skill
                 }
 
                 if(baseColor >=0){
-                    ObjectChoices[baseColor].GetPart<LiquidVolume>().GetPrimaryLiquid().PouredOn(new LiquidVolume(ObjectChoices[baseColor].GetPart<LiquidVolume>().GetPrimaryLiquid().ID,1),Canvas);
+                    ObjectChoices[baseColor].GetPart<LiquidVolume>().GetPrimaryLiquid().SmearOn(new LiquidVolume(ObjectChoices[baseColor].GetPart<LiquidVolume>().GetPrimaryLiquid().ID,1),Canvas,ParentObject,false);
                     ObjectChoices[baseColor].GetPart<LiquidVolume>().UseDrams(1);
                 }
                 if(detailColor >=0){
-                    ObjectChoices2[detailColor].GetPart<LiquidVolume>().GetPrimaryLiquid().PouredOn(new LiquidVolume(ObjectChoices2[detailColor].GetPart<LiquidVolume>().GetPrimaryLiquid().ID,1),Canvas);
+                    ObjectChoices2[detailColor].GetPart<LiquidVolume>().GetPrimaryLiquid().SmearOn(new LiquidVolume(ObjectChoices2[detailColor].GetPart<LiquidVolume>().GetPrimaryLiquid().ID,1),Canvas,ParentObject,false);
                     ObjectChoices2[detailColor].GetPart<LiquidVolume>().UseDrams(1);
                 }
                 Canvas.ApplyEffect(painting);

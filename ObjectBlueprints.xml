@@ -1,6 +1,9 @@
 <objects>
 
-
+  <object Name="liquidpopulationhotladerdummy" Inherits="Object">
+    <part Name="acegiak_PigmentMerchantHotloader"/>
+    <tag Name="ExcludeFromDynamicEncounters" Value="*noinherit" />
+  </object>
 
   <object Name="Dogthorn Tree" Load="Merge">
     <part Name="acegiak_FlowerHotloader"/>

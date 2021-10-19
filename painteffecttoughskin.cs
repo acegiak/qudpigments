@@ -7,7 +7,7 @@ using XRL.UI;
 using XRL.Core;
 using XRL.World;
 
-namespace XRL.World.Parts.Effects
+namespace XRL.World.Effects
 {
 	[Serializable]
 	public class acegiak_PaintEffectToughSkin : acegiak_ModHandPainted

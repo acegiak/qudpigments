@@ -47,7 +47,7 @@ namespace XRL.Liquids
 
 
 		public acegiak_LiquidDye()
-			: base()
+			: base("dye")
 		{
             this.Color = ColorNames.Keys.ToList().GetRandomElement();
 		}
@@ -115,16 +115,6 @@ namespace XRL.Liquids
 			}
 		}
 
-		public override void RenderSmearPrimary(LiquidVolume Liquid, RenderEvent eRender)
-		{
-			int num = XRLCore.CurrentFrame % 60;
-			if (num > 5 && num < 15)
-			{
-				eRender.ColorString = "&"+Color+(Color=="k"?"^K":"");
-			}
-			base.RenderSmearPrimary(Liquid, eRender);
-		}
-
 		public override string GetAdjective(LiquidVolume Liquid)
 		{
 			if (Liquid == null || Liquid.ComponentLiquids[ID] > 0)
@@ -132,11 +122,6 @@ namespace XRL.Liquids
 				return "&"+Color+(Color=="k"?"^K":"")+""+ColorNames[Color]+"";
 			}
 			return null;
-		}
-
-		public override void RenderBackground(LiquidVolume Liquid, RenderEvent eRender)
-		{
-			eRender.ColorString = "^k" + eRender.ColorString;
 		}
 
 		public override void RenderPrimary(LiquidVolume Liquid, RenderEvent eRender)
@@ -184,21 +169,27 @@ namespace XRL.Liquids
 			eRender.ColorString += "&"+Color;
 		}
 
-		public override bool PouredOn(LiquidVolume Liquid, XRL.World.GameObject GO)
+		public override void SmearOn(LiquidVolume Liquid, XRL.World.GameObject GO, XRL.World.GameObject By, bool FromCell)
 		{
-			// if (Liquid.ComponentLiquids.Count != 1)
-			// {
-			// 	return true;
-			// }
 			if (Liquid.Volume > 0)
 			{
-				GO.pRender.TileColor="&"+this.Color;
+				GO.pRender.TileColor   = "&"+this.Color;
 				GO.pRender.ColorString = "&"+this.Color;
-				GO.pRender.DetailColor =ToggleCase(this.Color);
-
-
+				GO.pRender.DetailColor = ToggleCase(this.Color);
 			}
-			return true;
+			base.SmearOn(Liquid,GO,By,FromCell);
+		}
+
+
+		public override void SmearOnTick(LiquidVolume Liquid, XRL.World.GameObject GO, XRL.World.GameObject By, bool FromCell)
+		{
+			if (Liquid.Volume > 0)
+			{
+				GO.pRender.TileColor   = "&"+this.Color;
+				GO.pRender.ColorString = "&"+this.Color;
+				GO.pRender.DetailColor = ToggleCase(this.Color);
+			}
+			base.SmearOnTick(Liquid,GO,By,FromCell);
 		}
 
 

@@ -1,0 +1,24 @@
+<populations>
+
+ <population Name="RandomDye">
+    <object Blueprint="charcoaldye"></object>
+    <object Blueprint="blackdye"></object>
+    <object Blueprint="whitedye"></object>
+    <object Blueprint="ashdye"></object>
+    <object Blueprint="crimsondye"></object>
+    <object Blueprint="scarletdye"></object>
+    <object Blueprint="golddye"></object>
+    <object Blueprint="ochredye"></object>
+    <object Blueprint="yellowdye"></object>
+    <object Blueprint="browndye"></object>
+    <object Blueprint="chartreusedye"></object>
+    <object Blueprint="mossdye"></object>
+    <object Blueprint="cobaltdye"></object>
+    <object Blueprint="ceruleandye"></object>
+    <object Blueprint="tealdye"></object>
+    <object Blueprint="turquoisedye"></object>
+    <object Blueprint="magentadye"></object>
+    <object Blueprint="violetdye"></object>
+  </population>
+
+  </populations>

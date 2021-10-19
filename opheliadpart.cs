@@ -1,6 +1,6 @@
 using System;
 using XRL.Rules;
-using XRL.World.Parts.Effects;
+using XRL.World.Effects;
 using XRL.UI;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,7 +32,7 @@ namespace XRL.World.Parts
             IPart.AddPlayerMessage(E.ID);
 			if (E.ID == "GetInventoryActions" && writing == null)
 			{
-				E.GetParameter<EventParameterGetInventoryActions>("Actions").AddAction("OpheliadWrite", 'W', false, "&WW&yrite", "InvCommandOpheliadWrite", 10);
+				E.GetParameter<EventParameterGetInventoryActions>("Actions").AddAction("OpheliadWrite", 'W', false, "&WW&yrite", "InvCommandOpheliadWrite");
 			}
             if(E.ID == "InvCommandOpheliadWrite" && writing == null){
                 //Popup.Show("WHAT");
@@ -60,7 +60,7 @@ namespace XRL.World.Parts
 
 
         public void MarkovWrite(){
-            writing = ConversationUI.GenerateMarkovMessageSentence();
+            writing = MarkovChain.GenerateSentence(MarkovBook.CorpusData.Values.OrderBy(c=>Guid.NewGuid()).First());
         }
 
         public void DegradeWriting(){

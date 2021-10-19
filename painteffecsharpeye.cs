@@ -6,12 +6,15 @@ using Qud.API;
 using XRL.UI;
 using XRL.Core;
 using XRL.World;
+using XRL.World.Parts;
 
-namespace XRL.World.Parts.Effects
+namespace XRL.World.Effects
 {
 	[Serializable]
 	public class acegiak_PaintEffectSharpEye : acegiak_ModHandPainted
 	{
+
+		string desc = "";
 
 
 		public acegiak_PaintEffectSharpEye():base()
@@ -22,7 +25,7 @@ namespace XRL.World.Parts.Effects
 
 		public override string GetDetails()
 		{
-			return base.GetDetails()+"\nFiring missile weapons costs 10% less energy.";
+			return base.GetDetails()+"\nFiring missile weapons costs 25% less energy.";
 		}
 
         
@@ -47,14 +50,10 @@ namespace XRL.World.Parts.Effects
 				if(E.GetParameter("EnergyMultiplier") != null){
 					multiplier = (float)E.GetParameter("EnergyMultiplier");
 				}
-				multiplier = multiplier * 0.9f;
+				multiplier = multiplier * 0.75f;
 				E.SetParameter("EnergyMultiplier",multiplier);
 			}
 			return base.FireEvent(E);
 		}
-		
-
-
-
 	}
-	}
+}

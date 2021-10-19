@@ -2,8 +2,9 @@ using System;
 using XRL.Core;
 using XRL.UI;
 using XRL.World.Parts.Mutation;
+using XRL.World.Parts;
 
-namespace XRL.World.Parts.Effects
+namespace XRL.World.Effects
 {
 	[Serializable]
 	public class acegiak_OracularPremonition : Effect
@@ -134,7 +135,7 @@ namespace XRL.World.Parts.Effects
 							string extra = "before your eyes";
 							string terminalPunctuation = "!";
 							GameObject @object = Object;
-							DidX(verb, extra, terminalPunctuation, false, null, @object);
+							DidX(verb, extra, terminalPunctuation);
 							return false;
 						}
 					}

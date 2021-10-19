@@ -1,6 +1,6 @@
 using System;
 using XRL.Rules;
-using XRL.World.Parts.Effects;
+using XRL.World.Effects;
 
 namespace XRL.World.Parts
 {

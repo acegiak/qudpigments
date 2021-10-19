@@ -33,7 +33,7 @@ namespace XRL.World.Parts
 		{
 			if (E.ID == "OnEat")
 			{
-				Effect effect = Activator.CreateInstance(ModManager.ResolveType("XRL.World.Parts.Effects." + Effect)) as Effect;
+				Effect effect = Activator.CreateInstance(ModManager.ResolveType("XRL.World.Effects." + Effect)) as Effect;
 				if (!string.IsNullOrEmpty(Duration))
 				{
 					effect.Duration = Stat.Roll(Duration);

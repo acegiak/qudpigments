@@ -6,7 +6,7 @@ using Qud.API;
 using XRL.UI;
 using XRL.Core;
 
-namespace XRL.World.Parts.Effects
+namespace XRL.World.Effects
 {
 	[Serializable]
 	public class acegiak_PaintEffectTerror : acegiak_ModHandPainted
@@ -43,7 +43,7 @@ namespace XRL.World.Parts.Effects
                     //Popup.Show("What are you reading??");
                     return true;
                 }
-				XRL.World.Parts.Mutation.Fear.ApplyFearToObject("2d8", 10, o, Object, null, false, false);
+				XRL.World.Parts.Mutation.Fear.ApplyFearToObject("2d8", 10, o, Object);
 				return true;
 			}
 

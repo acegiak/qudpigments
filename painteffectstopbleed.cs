@@ -3,8 +3,9 @@ using System.Text;
 using XRL.Rules;
 using XRL.World.Encounters;
 using XRL.UI;
+using XRL.World.Parts;
 
-namespace XRL.World.Parts.Effects
+namespace XRL.World.Effects
 {
 	[Serializable]
 	public class acegiak_PaintEffectStaunch : acegiak_ModHandPainted

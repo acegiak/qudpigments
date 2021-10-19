@@ -6,7 +6,7 @@ using Qud.API;
 using XRL.UI;
 using XRL.Core;
 
-namespace XRL.World.Parts.Effects
+namespace XRL.World.Effects
 {
 	[Serializable]
 	public class acegiak_PaintEffectPsy : acegiak_ModHandPainted
@@ -44,7 +44,7 @@ namespace XRL.World.Parts.Effects
                     return true;
                 }
 				if(!o.MakeSave("Wisdom", 10, Object, null, "Dazzling Paint")){
-                    o.ApplyEffect(new Confused(15,1));
+                    o.ApplyEffect(new Confused(15,1,3));
                 }
 				return true;
 			}
